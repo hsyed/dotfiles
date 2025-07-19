@@ -1,0 +1,23 @@
+# Nix build results
+result
+result-*
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Editor temporaries
+.#*
+\#*#
+*.swp
+*.swo
+
+# MacOS
+.DS_Store
+
+# Direnv
+.direnv/
+
+# Hardware configuration (if auto-generated) // TODO auto generate this ?
+# hardware-configuration.nix
