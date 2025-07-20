@@ -20,7 +20,6 @@
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   home.packages = [
-    pkgs.chromium
     pkgs.spotify
     pkgs.discord
     pkgs.signal-desktop-bin
@@ -32,6 +31,10 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
+  programs.chromium = {
+    enable = true;
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

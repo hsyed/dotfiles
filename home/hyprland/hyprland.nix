@@ -45,8 +45,9 @@
     package = null;
     portalPackage = null;
     settings = {
-      # Basic keybindings
       "$mod" = "SUPER";
+      "$webapp" = "chromium --new-window --ozone-platform=wayland --app";
+
       bind = [
         "$mod, Return, exec, kitty" # Terminal
         "$mod, W, killactive"
@@ -58,6 +59,9 @@
         "$mod, V, togglefloating"
         "$mod, Space, exec, pkill wofi || wofi --normal-window --show drun" # App launcher
         "$mod, Escape, exec, hyprlock --immediate" # Lock screen without grace period for credentials
+
+        # apps
+        "$mod SHIFT, C, exec, $webapp=\"https://claude.ai/new\""
 
         # Move focus with mod + arrow keys
         "$mod, left, movefocus, l"
