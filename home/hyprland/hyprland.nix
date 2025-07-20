@@ -57,6 +57,7 @@
         "$mod, Space, exec, pkill wofi || wofi --normal-window --show drun" # App launcher
         "$mod, P, pseudo" # dwindle
         "$mod, J, togglesplit" # dwindle
+        "$mod, Escape, exec, hyprlock --immediate" # Lock screen without grace period for credentials
 
         # Move focus with mod + arrow keys
         "$mod, left, movefocus, l"
@@ -165,11 +166,11 @@
       # - New windows become slaves to preserve master centrality
       # - pain point: closing left slave with a right slave causes it toake the position of the left.
       master = {
-        new_status = "slave";                    # New windows become slaves
-        new_on_top = false;                      # New slaves added to bottom
-        mfact = 0.55;                            # Master takes 55% of screen
-        orientation = "center";                  # place the master in the center
-        slave_count_for_center_master = 0;       # Center master all the time
+        new_status = "slave"; # New windows become slaves
+        new_on_top = false; # New slaves added to bottom
+        mfact = 0.55; # Master takes 55% of screen
+        orientation = "center"; # place the master in the center
+        slave_count_for_center_master = 0; # Center master all the time
       };
 
       # Misc settings

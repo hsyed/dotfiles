@@ -6,6 +6,8 @@
     ./waybar.nix
     ./wofi.nix
     ./kitty.nix
+    ./idle.nix
+    ./lock.nix
   ];
 
   home.packages = [
