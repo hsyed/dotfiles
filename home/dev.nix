@@ -37,5 +37,43 @@
         "html"
       ];
     };
+
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      autocd = true;
+
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+
+      history = {
+        size = 10000;
+        save = 10000;
+        share = true;
+        ignoreDups = true;
+        ignoreSpace = true;
+        expireDuplicatesFirst = true;
+      };
+
+      shellAliases = {
+        "nx.rebuild.system" = "sudo nixos-rebuild switch --flake ~/.dotfiles";
+        "nx.rebuild.home" = "home-manager switch";
+      };
+
+      oh-my-zsh = {
+        enable = true;
+        theme = "robbyrussell";
+        plugins = [
+          "git"
+          "npm"
+          "history"
+          "node"
+          "rust"
+          "deno"
+          "sudo"
+          "command-not-found"
+        ];
+      };
+    };
   };
 }

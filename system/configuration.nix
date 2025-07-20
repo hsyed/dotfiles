@@ -59,6 +59,9 @@
     packages = with pkgs; [ ];
   };
 
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
   # Enable automatic login for the user.
   services.getty.autologinUser = "hsyed";
 
