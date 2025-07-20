@@ -50,13 +50,13 @@
       bind = [
         "$mod, Return, exec, kitty" # Terminal
         "$mod, W, killactive"
-        "$mod, M, exit"
+        "$mod SHIFT, Escape, exit" # kill hyprland
+        "$mod, M, exec, spotify" # Spotify
+        "$mod, D, exec, kitty btop" # System monitor
         "$mod, E, exec, dolphin" # File manager
         "$mod, B, exec, chromium --new-window --ozone-platform=wayland" # Browser
         "$mod, V, togglefloating"
         "$mod, Space, exec, pkill wofi || wofi --normal-window --show drun" # App launcher
-        "$mod, P, pseudo" # dwindle
-        "$mod, J, togglesplit" # dwindle
         "$mod, Escape, exec, hyprlock --immediate" # Lock screen without grace period for credentials
 
         # Move focus with mod + arrow keys
@@ -94,10 +94,6 @@
         "$mod SHIFT, 8, movetoworkspace, 8"
         "$mod SHIFT, 9, movetoworkspace, 9"
         "$mod SHIFT, 0, movetoworkspace, 10"
-
-        # Scroll through existing workspaces with mod + scroll
-        "$mod, mouse_down, workspace, e+1"
-        "$mod, mouse_up, workspace, e-1"
 
         # Screenshot bindings
         ", PRINT, exec, hyprshot -m region"
@@ -142,11 +138,11 @@
         enabled = true;
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
+          "windows, 1, 3.5, myBezier"
+          "windowsOut, 1, 3.5, default, popin 80%"
           "border, 1, 10, default"
           "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
+          "fade, 1, 3.5, default"
           "workspaces, 1, 1.5, default, fade"
         ];
       };
@@ -155,7 +151,7 @@
       input = {
         kb_layout = "us";
         follow_mouse = 1;
-        kb_options = "altwin:swap_alt_win";
+        kb_options = "altwin:swap_alt_win"; #keychron foibles -- this switches alt and win
         touchpad = {
           natural_scroll = false;
         };
