@@ -56,8 +56,10 @@
       };
 
       shellAliases = {
-        "nx.rebuild.system" = "sudo nixos-rebuild switch --flake ~/.dotfiles";
-        "nx.rebuild.home" = "home-manager switch";
+        "nx.fmt" = "env -C ~/.dotfiles nix fmt";
+        "nx.verify" = "nix flake check ~/.dotfiles";
+        "nx.sys.switch" = "sudo nixos-rebuild switch --flake ~/.dotfiles";
+        "nx.home.switch" = "home-manager switch";
       };
 
       oh-my-zsh = {

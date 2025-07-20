@@ -21,7 +21,7 @@
           on-resume = "hyprctl dispatch dpms on";
         }
         # uncomment for suspend
-        # { 
+        # {
         #   timeout = 1800; # 30 minutes
         #   on-timeout = "systemctl suspend";
         # }
