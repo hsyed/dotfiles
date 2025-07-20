@@ -48,7 +48,7 @@
       # Basic keybindings
       "$mod" = "SUPER";
       bind = [
-        "$mod, Return, exec, ghostty" # Terminal
+        "$mod, Return, exec, kitty" # Terminal
         "$mod, W, killactive"
         "$mod, M, exit"
         "$mod, E, exec, dolphin" # File manager
@@ -158,8 +158,6 @@
 
       # Window rules
       windowrulev2 = [
-        "opacity 0.8 0.8,class:^(kitty)$"
-        "opacity 0.8 0.8,class:^(thunar)$"
       ];
 
       # Master layout for better single window handling
