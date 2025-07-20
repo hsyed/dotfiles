@@ -82,6 +82,7 @@
     tailscale
     pkgs.pavucontrol # used as general audio control
     pkgs.pamixer # used for muting
+    pkgs.mangohud # gaming stats overlay
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -123,7 +124,10 @@
 
   services.tailscale.enable = true;
 
-  hardware.graphics.enable = true; # enable opengl I think
+  hardware.graphics = {
+    enable = true; # enable opengl I think
+    enable32Bit = true;
+  };
 
   services.xserver.videoDrivers = [ "nvidia" ]; # prime the nvidia driver, the "hardware.nvidia" stuff below doesn't set things up.
 
@@ -150,4 +154,10 @@
     alsa.enable = true; # low level sound functionality -- pipewire talks to this
     alsa.support32Bit = true; # cuz i saw it somewhere
   };
+
+  # game config, see: https://www.youtube.com/watch?v=qlfm3MEbqYA
+  programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true; # wraps a session in a micro compositor for performance reasons
+  programs.gamemode.enable = true; # temporarily tunes system for gaming
+  # lutris, bottle and heroic not included
 }

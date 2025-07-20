@@ -151,7 +151,7 @@
       input = {
         kb_layout = "us";
         follow_mouse = 1;
-        kb_options = "altwin:swap_alt_win"; #keychron foibles -- this switches alt and win
+        kb_options = "altwin:swap_alt_win"; # keychron foibles -- this switches alt and win
         touchpad = {
           natural_scroll = false;
         };

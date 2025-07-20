@@ -23,6 +23,8 @@
     pkgs.chromium
     pkgs.spotify
     pkgs.discord
+    pkgs.signal-desktop-bin
+    pkgs.protonup # manage proton runtime updates
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
