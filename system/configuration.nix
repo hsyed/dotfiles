@@ -64,10 +64,10 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
+
   # Silence dirty git tree warnings for flake commands
   nix.settings.warn-dirty = false;
-  
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [

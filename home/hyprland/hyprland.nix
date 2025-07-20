@@ -160,13 +160,16 @@
       windowrulev2 = [
       ];
 
-      # Master layout for better single window handling
+      # Master layout configuration (see: https://wiki.hypr.land/Configuring/Master-Layout/)
+      # - Master window always centered (orientation = "center")
+      # - New windows become slaves to preserve master centrality
+      # - pain point: closing left slave with a right slave causes it toake the position of the left.
       master = {
-        new_status = "slave";
-        new_on_top = false;
-        mfact = 0.55;
-        orientation = "center";
-        slave_count_for_center_master = 0;
+        new_status = "slave";                    # New windows become slaves
+        new_on_top = false;                      # New slaves added to bottom
+        mfact = 0.55;                            # Master takes 55% of screen
+        orientation = "center";                  # place the master in the center
+        slave_count_for_center_master = 0;       # Center master all the time
       };
 
       # Misc settings
