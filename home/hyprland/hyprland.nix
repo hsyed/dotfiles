@@ -98,6 +98,11 @@
         # Scroll through existing workspaces with mod + scroll
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
+
+        # Screenshot bindings
+        ", PRINT, exec, hyprshot -m region"
+        "SHIFT, PRINT, exec, hyprshot -m window"
+        "CTRL, PRINT, exec, hyprshot -m output"
       ];
 
       # Mouse bindings

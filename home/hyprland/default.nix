@@ -11,6 +11,7 @@
   ];
 
   home.packages = [
+    pkgs.hyprshot # Screenshot utility for Hyprland
     pkgs.kdePackages.dolphin
     # Nerd Fonts for waybar and terminal icons
     pkgs.nerd-fonts.jetbrains-mono

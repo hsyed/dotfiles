@@ -14,6 +14,9 @@
         modules-left = [
           "hyprland/workspaces"
           "custom/right-arrow-dark"
+          "custom/right-arrow-light"
+          "tray"
+          "custom/right-arrow-dark"
         ];
 
         modules-center = [
@@ -46,9 +49,6 @@
           "custom/left-arrow-light"
           "custom/left-arrow-dark"
           "disk"
-          "custom/left-arrow-light"
-          "custom/left-arrow-dark"
-          "tray"
         ];
 
         # SwayNC notification module
@@ -158,6 +158,8 @@
 
         tray = {
           icon-size = 20;
+          spacing = 8;
+          show-passive-items = true;
         };
       };
     };
@@ -246,6 +248,10 @@
       #cpu,
       #battery,
       #disk {
+        padding: 0 10px;
+      }
+
+      #tray {
         padding: 0 10px;
       }
     '';
