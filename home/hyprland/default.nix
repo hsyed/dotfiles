@@ -80,4 +80,7 @@
     platformTheme.name = "gtk3";
     style.name = "adwaita-dark";
   };
+
+  # Polkit authentication agent
+  services.hyprpolkitagent.enable = true;
 }
