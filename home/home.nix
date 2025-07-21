@@ -70,4 +70,14 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.zsh = {
+    enable = true;
+    initExtra = ''
+      # Auto-start Hyprland on TTY1
+      if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+        exec uwsm start hyprland-uwsm.desktop
+      fi
+    '';
+  };
 }
