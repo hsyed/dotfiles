@@ -1,3 +1,7 @@
-{...}: {
-  programs.wofi.enable = true;
+{ pkgs, ... }:
+{
+  programs.wofi = {
+    enable = true;
+    package = pkgs.rofi;
+  };
 }

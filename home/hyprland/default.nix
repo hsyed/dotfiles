@@ -89,6 +89,6 @@
 
   services.cliphist = {
     enable = true;
-    allowImages = false; # rofi does not deal with images well (tiny icons).
+    allowImages = true; # rofi does not deal with images well (tiny icons).
   };
 }

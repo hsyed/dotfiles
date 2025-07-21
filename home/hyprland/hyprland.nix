@@ -18,11 +18,12 @@
         "$mod, B, exec, chromium --new-window --ozone-platform=wayland" # Browser
         "$mod, V, togglefloating"
         "$mod, Space, exec, rofi -show combi -combi-modes \"window,drun,ssh\" -modes combi" # App launcher
-        #"$mod, Space, exec, pkill wofi || wofi --normal-window --show drun" # App launcher
+        # TODO style rofi
+        "$mod SHIFT, C, exec, rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons"
         "$mod, Escape, exec, hyprlock --immediate" # Lock screen without grace period for credentials
 
         # apps
-        "$mod SHIFT, C, exec, $webapp=\"https://claude.ai/new\""
+        "$mod, A, exec, $webapp=\"https://claude.ai/new\""
 
         # Move focus with mod + arrow keys
         "$mod, left, movefocus, l"
