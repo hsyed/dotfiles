@@ -10,7 +10,7 @@
 
       bind = [
         "$mod, Return, exec, kitty" # Terminal
-        "$mod, W, killactive"
+        "$mod, Q, killactive"
         "$mod SHIFT, Escape, exit" # kill hyprland
         "$mod, M, exec, spotify" # Spotify
         "$mod, D, exec, kitty btop" # System monitor
