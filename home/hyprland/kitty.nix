@@ -14,7 +14,7 @@
       font_size = "12.0";
 
       # Theme and appearance
-      background_opacity = "0.70";
+      background_opacity = "0.85";
       dynamic_background_opacity = true;
 
       # Window settings

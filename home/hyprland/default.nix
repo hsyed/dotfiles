@@ -8,6 +8,8 @@
     ./kitty.nix
     ./idle.nix
     ./lock.nix
+    ./wpaperd.nix
+    ./swaync.nix
   ];
 
   home.packages = [
