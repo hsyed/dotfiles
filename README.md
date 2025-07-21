@@ -8,6 +8,7 @@ Combined NixOS and Home Manager flake for user `hsyed` on host `catharsis`.
 - **Hardware**: NVIDIA GPU with open drivers
 - **Desktop**: Hyprland (Wayland compositor) with XWayland support
 - **Audio**: PipeWire with ALSA/PulseAudio compatibility
+- **Shell**: zsh (default)
 
 ## Structure
 

@@ -19,7 +19,8 @@ This is a NixOS and Home Manager dotfiles repository for user `hsyed` on the `ca
   - `home/dev.nix` - Development tools and CLI utilities (ripgrep, k9s, claude-code, git, etc.)
   - `home/hyprland/` - Hyprland window manager configuration module
 - **Target system**: `catharsis` (x86_64-linux) with NVIDIA GPU support and Hyprland desktop environment
-- **primary user**: `hsyed`
+- **Primary user**: `hsyed`
+- **Default shell**: zsh
 
 ## Hyperland / Graphical environement Setup
 
