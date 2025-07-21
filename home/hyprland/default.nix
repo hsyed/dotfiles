@@ -30,6 +30,11 @@
     ];
   };
 
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
+
   # GTK theming for consistent dark theme
   gtk = {
     enable = true;
