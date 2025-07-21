@@ -12,13 +12,14 @@
     ./swaync.nix
   ];
 
-  home.packages = [
-    pkgs.hyprshot # Screenshot utility for Hyprland
-    pkgs.kdePackages.dolphin
-    pkgs.jetbrains-mono # Regular JetBrains Mono font
-    # Nerd Fonts for waybar and terminal icons
-    pkgs.nerd-fonts.jetbrains-mono
-    pkgs.nerd-fonts.fira-code
+  home.packages = with pkgs; [
+    hyprshot # Screenshot utility for Hyprland
+    kdePackages.dolphin
+
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
+    noto-fonts # For Noto Serif/Sans
+    nerd-fonts.caskaydia-mono # For Caskaydia Mono Nerd Font
   ];
   programs.chromium = {
     enable = true;
@@ -33,6 +34,17 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+  };
+
+  fonts = {
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        serif = [ "Noto Serif" ];
+        sansSerif = [ "Noto Sans" ];
+        monospace = [ "Caskaydia Mono Nerd Font" ];
+      };
+    };
   };
 
   # GTK theming for consistent dark theme
@@ -68,7 +80,4 @@
     platformTheme.name = "gtk3";
     style.name = "adwaita-dark";
   };
-
-  # Font configuration
-  fonts.fontconfig.enable = true;
 }
