@@ -5,6 +5,7 @@
     ./hyprland.nix
     ./waybar.nix
     ./wofi.nix
+    ./rofi.nix
     ./kitty.nix
     ./idle.nix
     ./lock.nix
@@ -15,7 +16,9 @@
   home.packages = with pkgs; [
     hyprshot # Screenshot utility for Hyprland
     kdePackages.dolphin
+    wl-clipboard # for cli tools to interact with the wayland clipboard
 
+    # fonts
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
     noto-fonts # For Noto Serif/Sans
@@ -83,4 +86,9 @@
 
   # Polkit authentication agent
   services.hyprpolkitagent.enable = true;
+
+  services.cliphist = {
+    enable = true;
+    allowImages = false; # rofi does not deal with images well (tiny icons).
+  };
 }

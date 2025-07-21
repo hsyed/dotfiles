@@ -17,7 +17,8 @@
         "$mod, E, exec, dolphin" # File manager
         "$mod, B, exec, chromium --new-window --ozone-platform=wayland" # Browser
         "$mod, V, togglefloating"
-        "$mod, Space, exec, pkill wofi || wofi --normal-window --show drun" # App launcher
+        "$mod, Space, exec, rofi -show combi -combi-modes \"window,drun,ssh\" -modes combi" # App launcher
+        #"$mod, Space, exec, pkill wofi || wofi --normal-window --show drun" # App launcher
         "$mod, Escape, exec, hyprlock --immediate" # Lock screen without grace period for credentials
 
         # apps
