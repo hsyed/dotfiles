@@ -13,10 +13,6 @@
       font_family = "JetBrains Mono";
       font_size = "12.0";
 
-      # Theme and appearance
-      background_opacity = "0.85";
-      dynamic_background_opacity = true;
-
       # Window settings
       window_padding_width = 10;
       hide_window_decorations = "titlebar-only";
