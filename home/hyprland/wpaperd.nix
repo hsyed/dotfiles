@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 # wpaperd manages wallpapers, we use it over the others as it allows for rotating wallpapers in a directory without any additional configuration.
 # A hotkey should be assigned to `wpaperctl next` which cycles through wallpapers stored in ~/Pictures/wallpapers.
 #

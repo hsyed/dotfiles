@@ -7,6 +7,11 @@
     pkgs.claude-code
     pkgs.gh
     pkgs.lazygit
+    pkgs.rustc
+    pkgs.cargo
+    pkgs.rust-analyzer
+    pkgs.go
+    pkgs.nixd # nix lsp
   ];
 
   programs = {
@@ -77,5 +82,7 @@
         ];
       };
     };
+
+    vscode.enable = true;
   };
 }
