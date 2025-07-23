@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = [
@@ -8,11 +8,15 @@
     pkgs.gh
     pkgs.lazygit
     pkgs.rustc
-    pkgs.cargo
-    pkgs.rust-analyzer
+    pkgs.rustup
     pkgs.go
+    pkgs.clang
     pkgs.nixd # nix lsp
+    (pkgs.jetbrains.rust-rover.override {
+      jdk = pkgs.jdk; # todo keep an eye on this
+    })
   ];
+
 
   programs = {
     jq.enable = true;

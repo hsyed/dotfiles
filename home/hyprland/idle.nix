@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{  ... }:
 {
   # Hypridle idle management daemon
   services.hypridle = {
