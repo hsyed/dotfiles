@@ -5,6 +5,7 @@ Combined NixOS and Home Manager flake for user `hsyed` on host `catharsis`.
 ## System Configuration
 
 - **OS**: NixOS (x86_64-linux)
+- **Nixpkgs**: Tracks `nixos-unstable` channel
 - **Hardware**: NVIDIA GPU with open drivers
 - **Desktop**: Hyprland (Wayland compositor) with XWayland support
 - **Audio**: PipeWire with ALSA/PulseAudio compatibility

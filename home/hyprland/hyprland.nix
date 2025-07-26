@@ -145,6 +145,17 @@
         slave_count_for_center_master = 0; # Center master all the time
       };
 
+      # Cursor settings
+      #cursor = {
+      #  no_hardware_cursors = true;
+      #};
+
+      # Environment variables for cursor
+      env = [
+        "XCURSOR_THEME,Bibata-Modern-Amber"
+        "XCURSOR_SIZE,24"
+      ];
+
       # Misc settings
       misc = {
       };

@@ -66,8 +66,8 @@
       package = pkgs.adwaita-icon-theme;
     };
     cursorTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
+      name = "Bibata-Modern-Amber";
+      package = pkgs.bibata-cursors;
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
