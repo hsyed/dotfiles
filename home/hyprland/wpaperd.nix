@@ -20,4 +20,13 @@
       };
     };
   };
+
+  # wpaperd crashes for some reason when resuming the machine from a display shut off.
+  systemd.user.services.wpaperd = {
+    Unit.After = [ "graphical-session.target" ];
+    Service = {
+      Restart = "on-failure";
+      RestartSec = "1";
+    };
+  };
 }
