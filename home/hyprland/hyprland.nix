@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -78,8 +78,8 @@
 
       # General settings
       general = {
-        gaps_in = 3;
-        gaps_out = 7;
+        gaps_in = 1;
+        gaps_out = 3;
         border_size = 3;
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
