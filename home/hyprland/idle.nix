@@ -1,4 +1,4 @@
-{  ... }:
+{ ... }:
 {
   # Hypridle idle management daemon
   services.hypridle = {

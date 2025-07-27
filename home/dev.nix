@@ -3,20 +3,19 @@
 {
   home.packages = [
     pkgs.ripgrep # rg better than grep.
-    pkgs.k9s
-    pkgs.claude-code
-    pkgs.gh
-    pkgs.lazygit
-    pkgs.rustc
-    pkgs.rustup
-    pkgs.go
-    pkgs.clang
+    pkgs.k9s # Kubernetes CLI
+    pkgs.claude-code # AI powered code editor
+    pkgs.gh # GitHub CLI
+    pkgs.rustc # Rust compiler
+    pkgs.rustup # Rust toolchain manager
+    pkgs.go # Go programming language
+    pkgs.clang # C/C++ compiler
+    pkgs.mold # fast linker
     pkgs.nixd # nix lsp
     (pkgs.jetbrains.rust-rover.override {
       jdk = pkgs.jdk; # todo keep an eye on this
     })
   ];
-
 
   programs = {
     jq.enable = true;
@@ -24,6 +23,7 @@
     fzf.enable = true;
     bat.enable = true;
     gh.enable = true;
+    lazygit.enable = true;
 
     git = {
       enable = true;
