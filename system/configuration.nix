@@ -11,8 +11,23 @@
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = true; # DO NOT CHANGE!
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.initrd.systemd.enable = true;
+
+  # Early KMS for flicker-free boot with NVIDIA
+  boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+
+  # Silent boot for cleaner experience
+  boot.consoleLogLevel = 3;
+  boot.initrd.verbose = false;
+  boot.kernelParams = [
+    "quiet"
+    "boot.shell_on_fail"
+    "udev.log_priority=3"
+    "rd.systemd.show_status=auto"
+  ];
 
   networking.hostName = "catharsis"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -61,9 +76,6 @@
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-
-  # Enable automatic login for the user.
-  services.getty.autologinUser = "hsyed";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -160,4 +172,18 @@
   programs.steam.gamescopeSession.enable = true; # wraps a session in a micro compositor for performance reasons
   programs.gamemode.enable = true; # temporarily tunes system for gaming
   # lutris, bottle and heroic not included
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'uwsm start hyprland-uwsm.desktop'";
+        user = "greeter";
+      };
+      initial_session = {
+        command = "uwsm start hyprland-uwsm.desktop";
+        user = "hsyed";
+      };
+    };
+  };
 }
