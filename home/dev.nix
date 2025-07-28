@@ -13,7 +13,7 @@
     pkgs.mold # fast linker
     pkgs.nixd # nix lsp
     (pkgs.jetbrains.rust-rover.override {
-      jdk = pkgs.jdk; # todo keep an eye on this
+      #jdk = pkgs.jdk; # uncomment this if there is an issue building with the jebtrains jdk
     })
   ];
 
