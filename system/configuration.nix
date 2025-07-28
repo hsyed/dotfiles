@@ -10,34 +10,85 @@
     ./hardware-configuration.nix
   ];
 
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "25.05"; # Did you read the comment?
+
   # Bootloader.
-  boot.loader.systemd-boot.enable = true; # DO NOT CHANGE!
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader.systemd-boot.enable = true; # DO NOT CHANGE!
+    loader.efi.canTouchEfiVariables = true;
+    consoleLogLevel = 3;
+    initrd = {
+      systemd.enable = true;
+      kernelModules = [
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
+      ]; # Early KMS for flicker-free boot with NVIDIA
+      verbose = false;
+    };
+    kernelParams = [
+      "quiet"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
+  };
 
-  boot.initrd.systemd.enable = true;
+  networking = {
+    hostName = "catharsis"; # Define your hostname.
 
-  # Early KMS for flicker-free boot with NVIDIA
-  boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+    # Enable networking
+    networkmanager.enable = true;
 
-  # Silent boot for cleaner experience
-  boot.consoleLogLevel = 3;
-  boot.initrd.verbose = false;
-  boot.kernelParams = [
-    "quiet"
-    "boot.shell_on_fail"
-    "udev.log_priority=3"
-    "rd.systemd.show_status=auto"
-  ];
+    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  networking.hostName = "catharsis"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    # Open ports in the firewall.
+    # firewall.allowedTCPPorts = [ ... ];
+    # firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    firewall.enable = false;
+  };
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # List services that you want to enable:
+  services = {
+    tailscale.enable = true;
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+    openssh = {
+      # Enable the OpenSSH daemon.
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+      };
+    };
+
+    pipewire = {
+      enable = true; # if not already enabled
+      pulse.enable = true; # pulse is being superceded by pipewire
+      alsa.enable = true; # low level sound functionality -- pipewire talks to this
+      alsa.support32Bit = true; # cuz i saw it somewhere
+    };
+
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'uwsm start hyprland-uwsm.desktop'";
+          user = "greeter";
+        };
+        initial_session = {
+          command = "uwsm start hyprland-uwsm.desktop";
+          user = "hsyed";
+        };
+      };
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -105,36 +156,10 @@
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-    };
-  };
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
-
-  services.tailscale.enable = true;
 
   hardware.graphics = {
     enable = true; # enable opengl I think
@@ -160,30 +185,10 @@
 
   security.rtkit.enable = true; # makes pipewire go fast (low latench support?)
 
-  services.pipewire = {
-    enable = true; # if not already enabled
-    pulse.enable = true; # pulse is being superceded by pipewire
-    alsa.enable = true; # low level sound functionality -- pipewire talks to this
-    alsa.support32Bit = true; # cuz i saw it somewhere
-  };
-
   # game config, see: https://www.youtube.com/watch?v=qlfm3MEbqYA
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true; # wraps a session in a micro compositor for performance reasons
   programs.gamemode.enable = true; # temporarily tunes system for gaming
   # lutris, bottle and heroic not included
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'uwsm start hyprland-uwsm.desktop'";
-        user = "greeter";
-      };
-      initial_session = {
-        command = "uwsm start hyprland-uwsm.desktop";
-        user = "hsyed";
-      };
-    };
-  };
 }
