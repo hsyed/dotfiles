@@ -13,6 +13,8 @@
     pkgs.mold # fast linker
     pkgs.nixd # nix lsp
     pkgs.nodejs
+    pkgs.fd
+    pkgs.sqlite
     (pkgs.jetbrains.rust-rover.override {
       #jdk = pkgs.jdk; # uncomment this if there is an issue building with the jebtrains jdk
     })
@@ -25,7 +27,7 @@
     bat.enable = true;
     gh.enable = true;
     lazygit.enable = true;
-    
+
     git = {
       enable = true;
       userName = "Hassan Syed";
@@ -68,8 +70,8 @@
       shellAliases = {
         "nx.fmt" = "env -C ~/.dotfiles nix fmt";
         "nx.verify" = "nix flake check ~/.dotfiles";
-        "nx.sys.switch" = "sudo nixos-rebuild switch --flake ~/.dotfiles";
-        "nx.home.switch" = "home-manager switch";
+        "nx.sys.switch" = "nh os switch --ask ~/.dotfiles";
+        "nx.home.switch" = "nh home switch --ask ~/.dotfiles";
       };
 
       oh-my-zsh = {
