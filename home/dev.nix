@@ -72,6 +72,7 @@
         "nx.verify" = "nix flake check ~/.dotfiles";
         "nx.sys.switch" = "nh os switch --ask ~/.dotfiles";
         "nx.home.switch" = "nh home switch --ask ~/.dotfiles";
+        "nx.clean" = "nh clean all --ask --keep 10";
       };
 
       oh-my-zsh = {
