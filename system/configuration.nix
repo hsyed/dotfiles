@@ -47,8 +47,6 @@
     # Enable networking
     networkmanager.enable = true;
 
-    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
     # Open ports in the firewall.
     # firewall.allowedTCPPorts = [ ... ];
     # firewall.allowedUDPPorts = [ ... ];
@@ -75,6 +73,8 @@
       alsa.support32Bit = true; # cuz i saw it somewhere
     };
 
+    # greetd is in charge of starting hyprland. The way it is configured no tty are started (at all) and hyoprland is launched directly. 
+    # no tty with auotologin configured but the first session logs in without asking for credentials.
     greetd = {
       enable = true;
       settings = {
@@ -122,8 +122,11 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [ ];
+    packages = [ ];
   };
+
+  # nix-ld is used here to enable dynamic linking outside the nix store, this is to support development tooling.
+  programs.nix-ld.enable = true;
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
@@ -146,6 +149,7 @@
     pkgs.pavucontrol # used as general audio control
     pkgs.pamixer # used for muting
     pkgs.mangohud # gaming stats overlay
+    pkgs.unzip
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -12,6 +12,7 @@
     pkgs.clang # C/C++ compiler
     pkgs.mold # fast linker
     pkgs.nixd # nix lsp
+    pkgs.nodejs
     (pkgs.jetbrains.rust-rover.override {
       #jdk = pkgs.jdk; # uncomment this if there is an issue building with the jebtrains jdk
     })
@@ -24,7 +25,7 @@
     bat.enable = true;
     gh.enable = true;
     lazygit.enable = true;
-
+    
     git = {
       enable = true;
       userName = "Hassan Syed";

@@ -130,7 +130,6 @@
       # Window rules
       windowrulev2 = [
         "opacity 0.97 0.90, class:.*"
-        "opacity 0.85 0.75, class:^(kitty)"
       ];
 
       # Master layout configuration (see: https://wiki.hypr.land/Configuring/Master-Layout/)
