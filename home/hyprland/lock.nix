@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 {
   # Hyprlock screen locker configuration
   programs.hyprlock = {

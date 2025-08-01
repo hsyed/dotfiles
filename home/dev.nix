@@ -15,6 +15,7 @@
     pkgs.nodejs
     pkgs.fd
     pkgs.sqlite
+    pkgs.deno
     (pkgs.jetbrains.rust-rover.override {
       #jdk = pkgs.jdk; # uncomment this if there is an issue building with the jebtrains jdk
     })
