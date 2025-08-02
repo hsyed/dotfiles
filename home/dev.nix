@@ -9,6 +9,7 @@
     pkgs.rustc # Rust compiler
     pkgs.rustup # Rust toolchain manager
     pkgs.go # Go programming language
+    pkgs.gopls # go LSP
     pkgs.clang # C/C++ compiler
     pkgs.mold # fast linker
     pkgs.nixd # nix lsp
@@ -16,6 +17,7 @@
     pkgs.fd
     pkgs.sqlite
     pkgs.deno
+    pkgs.cue
     (pkgs.jetbrains.rust-rover.override {
       #jdk = pkgs.jdk; # uncomment this if there is an issue building with the jebtrains jdk
     })
