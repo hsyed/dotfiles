@@ -80,7 +80,7 @@
       general = {
         gaps_in = 1;
         gaps_out = 3;
-        border_size = 2;
+        border_size = 3;
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
         layout = "master";
@@ -165,7 +165,7 @@
       # cm,hdr = HDR color management with wide gamut and PQ transfer function
       # sdrbrightness,1.45 = SDR content brightness in HDR mode (1.0-2.0 range)
       # sdrsaturation,1.2 = SDR content saturation boost in HDR mode
-      monitor = ",5120x1440@240,auto,1,bitdepth,10,cm,hdr,sdrbrightness,1.45,sdrsaturation,1.2";
+      monitor = ",5120x1440@240,auto,1,bitdepth,10,cm,hdr,sdrbrightness,1.40,sdrsaturation,1.2";
     };
   };
 }
