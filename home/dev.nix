@@ -29,12 +29,20 @@
     gh.enable = true;
     lazygit.enable = true;
 
+    zoxide = { # zoxide is a smarter cd command - tracks history.
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     git = {
       enable = true;
       userName = "Hassan Syed";
       userEmail = "h.a.syed@gmail.com";
       aliases = {
         st = "status";
+      };
+      extraConfig = {
+        core.editor = "nvim"; # lazygit picks this up
       };
     };
 
