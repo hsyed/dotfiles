@@ -130,6 +130,7 @@
       # Window rules
       windowrulev2 = [
         "opacity 0.97 0.90, class:.*"
+        "opacity 1.0 1.0, class:^(chromium-browser)$"
       ];
 
       # Master layout configuration (see: https://wiki.hypr.land/Configuring/Master-Layout/)
@@ -160,7 +161,11 @@
       };
 
       # Monitor configuration (adjust to your setup)
-      monitor = ",5120x1440@240,auto,1";
+      # bitdepth,10 = 10-bit color depth (1024 shades per RGB channel)
+      # cm,hdr = HDR color management with wide gamut and PQ transfer function
+      # sdrbrightness,1.45 = SDR content brightness in HDR mode (1.0-2.0 range)
+      # sdrsaturation,1.2 = SDR content saturation boost in HDR mode
+      monitor = ",5120x1440@240,auto,1,bitdepth,10,cm,hdr,sdrbrightness,1.45,sdrsaturation,1.2";
     };
   };
 }
