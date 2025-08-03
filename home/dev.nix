@@ -26,10 +26,14 @@
   programs = {
     jq.enable = true;
     btop.enable = true;
-    fzf.enable = true;
     bat.enable = true;
     gh.enable = true;
     lazygit.enable = true;
+
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
     zoxide = { # zoxide is a smarter cd command - tracks history.
       enable = true;

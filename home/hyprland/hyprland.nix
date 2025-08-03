@@ -25,11 +25,23 @@
         # apps
         "$mod, A, exec, $webapp=\"https://claude.ai/new\""
 
+        # Move focus with mod + vim keys
+        "$mod, h, movefocus, l"
+        "$mod, l, movefocus, r"
+        "$mod, k, movefocus, u"
+        "$mod, j, movefocus, d"
+
         # Move focus with mod + arrow keys
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
+
+        # Move windows with mod + SHIFT + vim keys
+        "$mod SHIFT, h, movewindow, l"
+        "$mod SHIFT, l, movewindow, r"
+        "$mod SHIFT, k, movewindow, u"
+        "$mod SHIFT, j, movewindow, d"
 
         # Move windows with mod + SHIFT + arrow keys
         "$mod SHIFT, left, movewindow, l"
@@ -165,7 +177,7 @@
       # cm,hdr = HDR color management with wide gamut and PQ transfer function
       # sdrbrightness,1.45 = SDR content brightness in HDR mode (1.0-2.0 range)
       # sdrsaturation,1.2 = SDR content saturation boost in HDR mode
-      monitor = ",5120x1440@240,auto,1,bitdepth,10,cm,hdr,sdrbrightness,1.40,sdrsaturation,1.2";
+      monitor = ",5120x1440@240,auto,1,bitdepth,10,cm,hdr,sdrbrightness,1.40,sdrsaturation,1.30";
     };
   };
 }
