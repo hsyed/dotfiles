@@ -54,9 +54,35 @@
     firewall.enable = true;
   };
 
-  # List services that you want to enable:
   services = {
     tailscale.enable = true;
+
+    # use keyd to make the windows layout behave more like a mac.
+    keyd = {
+      enable = true;
+      keyboards = {
+        default = {
+          ids = [ "*" ];
+
+          settings = {
+            main = {
+              leftalt = "leftmeta"; # switch alt with meta
+              leftmeta = "leftalt";
+            };
+
+            "meta:main" = {
+              # redirect the keypresses to ctrl to emulate mac bindings
+              c = "C-c"; # copy
+              x = "C-x"; # cut
+              v = "C-v"; # paste
+              w = "C-w"; # close tab / window
+              t = "C-t"; # open tab
+              a = "C-a"; # select all
+            };
+          };
+        };
+      };
+    };
 
     openssh = {
       # Enable the OpenSSH daemon.

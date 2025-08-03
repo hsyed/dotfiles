@@ -23,7 +23,7 @@
         "$mod, Escape, exec, hyprlock --immediate" # Lock screen without grace period for credentials
 
         # apps
-        "$mod, A, exec, $webapp=\"https://claude.ai/new\""
+        "$mod SHIFT, A, exec, $webapp=\"https://claude.ai/new\""
 
         # Move focus with mod + vim keys
         "$mod, h, movefocus, l"
@@ -74,9 +74,8 @@
         "$mod SHIFT, 0, movetoworkspace, 10"
 
         # Screenshot bindings
-        ", PRINT, exec, hyprshot -m region"
-        "SHIFT, PRINT, exec, hyprshot -m window"
-        "CTRL, PRINT, exec, hyprshot -m output"
+        ", PRINT, exec, hyprshot --clipboard-only -m region"
+        "SHIFT, PRINT, exec, hyprshot --clipboard-only -m window"
 
         # Wallpaper control
         "$mod, slash, exec, wpaperctl next"
@@ -132,7 +131,6 @@
       input = {
         kb_layout = "us";
         follow_mouse = 1;
-        kb_options = "altwin:swap_alt_win"; # keychron foibles -- this switches alt and win
         touchpad = {
           natural_scroll = false;
         };
@@ -141,7 +139,7 @@
 
       # Window rules
       windowrulev2 = [
-        "opacity 0.97 0.90, class:.*"
+        "opacity 0.92 0.85, class:.*"
         "opacity 1.0 1.0, class:^(chromium-browser)$"
       ];
 

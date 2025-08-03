@@ -18,6 +18,8 @@
     pkgs.sqlite
     pkgs.deno
     pkgs.cue
+    pkgs.torrential
+    pkgs.mpv
     (pkgs.jetbrains.rust-rover.override {
       #jdk = pkgs.jdk; # uncomment this if there is an issue building with the jebtrains jdk
     })
@@ -35,7 +37,8 @@
       enableZshIntegration = true;
     };
 
-    zoxide = { # zoxide is a smarter cd command - tracks history.
+    zoxide = {
+      # zoxide is a smarter cd command - tracks history.
       enable = true;
       enableZshIntegration = true;
     };
