@@ -19,7 +19,11 @@
     pkgs.deno
     pkgs.cue
     pkgs.torrential
-    pkgs.mpv
+    pkgs.mpv # media player
+    pkgs.docker-compose # docker-compose for podman
+    pkgs.podman-desktop # docker desktop for podman
+    pkgs.kubectl # Kubernetes CLI
+    pkgs.kind # Kubernetes in Docker
     (pkgs.jetbrains.rust-rover.override {
       #jdk = pkgs.jdk; # uncomment this if there is an issue building with the jebtrains jdk
     })

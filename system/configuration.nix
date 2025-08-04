@@ -78,17 +78,8 @@
 
           settings = {
             main = {
-              # switch alt with meta
-              leftalt = "leftmeta";
+              leftalt = "leftmeta"; # switch alt with meta
               leftmeta = "leftalt";
-
-              # redirect the keypresses to ctrl to emulate mac bindings
-              "M-c" = "C-c"; # copy
-              "M-x" = "C-x"; # cut
-              "M-v" = "C-v"; # paste
-              "M-w" = "C-w"; # close tab / window
-              "M-t" = "C-t"; # open tab
-              "M-a" = "C-w"; # select all
             };
           };
         };
