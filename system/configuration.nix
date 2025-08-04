@@ -18,6 +18,18 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # Silence dirty git tree warnings for flake commands
+  nix.settings.warn-dirty = false;
+
+  # enable flakes
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
   # Bootloader.
   boot = {
     loader.systemd-boot.enable = true; # DO NOT CHANGE!
@@ -66,18 +78,17 @@
 
           settings = {
             main = {
-              leftalt = "leftmeta"; # switch alt with meta
+              # switch alt with meta
+              leftalt = "leftmeta";
               leftmeta = "leftalt";
-            };
 
-            "meta:main" = {
               # redirect the keypresses to ctrl to emulate mac bindings
-              c = "C-c"; # copy
-              x = "C-x"; # cut
-              v = "C-v"; # paste
-              w = "C-w"; # close tab / window
-              t = "C-t"; # open tab
-              a = "C-a"; # select all
+              "M-c" = "C-c"; # copy
+              "M-x" = "C-x"; # cut
+              "M-v" = "C-v"; # paste
+              "M-w" = "C-w"; # close tab / window
+              "M-t" = "C-t"; # open tab
+              "M-a" = "C-w"; # select all
             };
           };
         };
@@ -162,12 +173,6 @@
   };
   users.defaultUserShell = pkgs.zsh;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # Silence dirty git tree warnings for flake commands
-  nix.settings.warn-dirty = false;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -191,10 +196,16 @@
   #   enableSSHSupport = true;
   # };
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  # Enable podman for rootless containers
+  virtualisation = {
+    containers.enable = true;
+
+    podman = {
+      enable = true;
+      dockerCompat = true; # Create docker alias for podman
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
 
   hardware.graphics = {
     enable = true; # enable opengl I think
