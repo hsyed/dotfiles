@@ -139,7 +139,7 @@
 
       # Window rules
       windowrulev2 = [
-        "opacity 0.92 0.85, class:.*"
+        "opacity 0.98 0.95, class:.*"
         "opacity 1.0 1.0, class:^(chromium-browser)$"
       ];
 
@@ -175,7 +175,7 @@
       # cm,hdr = HDR color management with wide gamut and PQ transfer function
       # sdrbrightness,1.45 = SDR content brightness in HDR mode (1.0-2.0 range)
       # sdrsaturation,1.2 = SDR content saturation boost in HDR mode
-      monitor = ",5120x1440@240,auto,1,bitdepth,10,cm,hdr,sdrbrightness,1.40,sdrsaturation,1.30";
+      monitor = ",5120x1440@240,auto,1";
     };
   };
 }
