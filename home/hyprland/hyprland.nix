@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -92,8 +92,6 @@
         gaps_in = 1;
         gaps_out = 3;
         border_size = 3;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
         layout = "master";
       };
 
@@ -109,7 +107,6 @@
           enabled = true;
           range = 4;
           render_power = 3;
-          color = "rgba(1a1a1aee)";
         };
       };
 
