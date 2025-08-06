@@ -2,12 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  stylix,
+  ...
+}:
 
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../common/stylix-theme.nix
   ];
 
   # This value determines the NixOS release from which the default
@@ -228,4 +234,11 @@
   programs.gamemode.enable = true; # temporarily tunes system for gaming
   # lutris, bottle and heroic not included
 
+  stylix = {
+    enable = true;
+
+    targets = {
+      qt.enable = true;
+    };
+  };
 }
