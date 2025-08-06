@@ -39,51 +39,6 @@
     createDirectories = true;
   };
 
-  fonts = {
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-        serif = [ "Noto Serif" ];
-        sansSerif = [ "Noto Sans" ];
-        monospace = [ "JetBrains Mono Nerd Font" ];
-      };
-    };
-  };
-
-  # GTK theming for consistent dark theme
-  gtk = {
-    enable = true;
-    font = {
-      name = "JetBrains Mono";
-      size = 11;
-    };
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
-    iconTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-    };
-    cursorTheme = {
-      name = "Bibata-Modern-Amber";
-      package = pkgs.bibata-cursors;
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-  };
-
-  # Qt theming to match GTK
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk3";
-    style.name = "adwaita-dark";
-  };
-
   # Polkit authentication agent
   services.hyprpolkitagent.enable = true;
 

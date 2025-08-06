@@ -1,5 +1,4 @@
-{ pkgs,config,... }:
-
+{ pkgs, config, ... }:
 {
   home.packages = [
     pkgs.ripgrep # rg better than grep.
