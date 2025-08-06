@@ -1,5 +1,6 @@
 # common stylix theme configuration, only add theme elements to this file and leave
 # toggling targets to nixos/hm.
+# https://nix-community.github.io/stylix/
 { pkgs, ... }:
 {
   stylix = {
