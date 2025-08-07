@@ -236,9 +236,5 @@
 
   stylix = {
     enable = true;
-
-    targets = {
-      qt.enable = true;
-    };
   };
 }
