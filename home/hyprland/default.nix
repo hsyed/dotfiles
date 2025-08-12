@@ -24,6 +24,7 @@
     noto-fonts # For Noto Serif/Sans
     nerd-fonts.caskaydia-mono # For Caskaydia Mono Nerd Font
   ];
+
   programs.chromium = {
     enable = true;
     commandLineArgs = [
@@ -32,10 +33,16 @@
       "--gtk-version=4"
       "--enable-wayland-ime"
     ];
+    extensions = [
+      "aeblfdkhhhdcdjpifhhbdiojplfjncoa" # 1password
+      "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
+      "ddkjiahejlhfcafbddmgiahcphecmpfh" # ublock origin lite
+    ];
   };
 
   xdg.userDirs = {
     enable = true;
+    # create the standard XDG user directories if they are missing like ~/Documents, ~/Downloads, etc.
     createDirectories = true;
   };
 
