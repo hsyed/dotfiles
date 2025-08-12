@@ -17,6 +17,7 @@
     pkgs.sqlite
     pkgs.deno
     pkgs.cue
+    pkgs.nil # Abother Nix LSP (?)
     pkgs.torrential
     pkgs.mpv # media player
     pkgs.docker-compose # docker-compose for podman
@@ -102,6 +103,7 @@
         "nx.sys.switch" = "nh os switch --ask ~/.dotfiles";
         "nx.home.switch" = "nh home switch --ask ~/.dotfiles";
         "nx.clean" = "nh clean all --ask --keep 10";
+        cd = "z"; # use zoxide for cd
       };
 
       oh-my-zsh = {
@@ -121,5 +123,7 @@
     };
 
     vscode.enable = true;
+
+    zellij.enable = true;
   };
 }
