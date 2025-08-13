@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -27,7 +27,6 @@
         "$mod SHIFT, X, exec, $webapp=\"https://x.com\""
         "$mod SHIFT, Y, exec, $webapp=\"https://youtube.com\""
         "$mod SHIFT, W, exec, $webapp=\"https://web.whatsapp.com\""
-
 
         # Move focus with mod + vim keys
         "$mod, h, movefocus, l"
@@ -178,7 +177,8 @@
       # cm,hdr = HDR color management with wide gamut and PQ transfer function
       # sdrbrightness,1.45 = SDR content brightness in HDR mode (1.0-2.0 range)
       # sdrsaturation,1.2 = SDR content saturation boost in HDR mode
-      monitor = ",5120x1440@240,auto,1";
+      # 2080ti power draw: 120hz = ~21w, 240hz = ~65w power draw
+      monitor = ",5120x1440@120,auto,1";
     };
   };
 }

@@ -86,7 +86,6 @@
     targets = {
       qt.enable = true;
       neovim.enable = false;
-      kitty.enable = false;
       zed.enable = false;
     };
   };
