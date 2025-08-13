@@ -17,10 +17,12 @@
         "$mod, E, exec, dolphin" # File manager
         "$mod, B, exec, chromium --new-window --ozone-platform=wayland" # Browser
         "$mod SHIFT, V, togglefloating"
-        "$mod, Space, exec, rofi -show combi -combi-modes \"window,drun,ssh\" -modes combi" # App launcher
-        # TODO style rofi
-        "$mod SHIFT, C, exec, rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons"
         "$mod, Escape, exec, hyprlock --immediate" # Lock screen without grace period for credentials
+
+        # rofi
+        "$mod, Space, exec, rofi -show combi -combi-modes \"window,drun,ssh\" -modes combi" # App launcher
+        "$mod CTRL, C, exec, rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons" # Clipboard history
+        "$mod CTRL, Space, exec, rofi -show emoji" # Emoji picker
 
         # apps
         "$mod SHIFT, A, exec, $webapp=\"https://claude.ai/new\""

@@ -25,6 +25,10 @@
         package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrains Mono Nerd Font";
       };
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji";
+      };
     };
 
     # Cursor theme

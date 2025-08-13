@@ -87,6 +87,7 @@
       qt.enable = true;
       neovim.enable = false;
       zed.enable = false;
+      rofi.enable = false;
     };
   };
 }
