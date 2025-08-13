@@ -26,6 +26,8 @@
         "$mod SHIFT, A, exec, $webapp=\"https://claude.ai/new\""
         "$mod SHIFT, X, exec, $webapp=\"https://x.com\""
         "$mod SHIFT, Y, exec, $webapp=\"https://youtube.com\""
+        "$mod SHIFT, W, exec, $webapp=\"https://web.whatsapp.com\""
+
 
         # Move focus with mod + vim keys
         "$mod, h, movefocus, l"
