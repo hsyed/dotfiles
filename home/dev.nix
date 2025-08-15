@@ -18,6 +18,8 @@
     pkgs.deno
     pkgs.cue
     pkgs.nil # Abother Nix LSP (?)
+    # Markdown LSP -- this is a dotnet app -- mason maanged version has issue linking to icu 😭.
+    pkgs.marksman
     pkgs.torrential
     pkgs.mpv # media player
     pkgs.docker-compose # docker-compose for podman
