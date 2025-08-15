@@ -5,19 +5,23 @@
     package = null;
     portalPackage = null;
     settings = {
+      "$term" = "ghostty";
       "$mod" = "SUPER";
       "$webapp" = "chromium --new-window --ozone-platform=wayland --app";
 
       bind = [
-        "$mod, Return, exec, kitty" # Terminal
         "$mod, Q, killactive"
         "$mod SHIFT, Escape, exit" # kill hyprland
+        "$mod SHIFT, V, togglefloating"
+
         "$mod, M, exec, spotify" # Spotify
-        "$mod, D, exec, kitty btop" # System monitor
         "$mod, E, exec, dolphin" # File manager
         "$mod, B, exec, chromium --new-window --ozone-platform=wayland" # Browser
-        "$mod SHIFT, V, togglefloating"
         "$mod, Escape, exec, hyprlock --immediate" # Lock screen without grace period for credentials
+
+        # terminal
+        "$mod, Return, exec, $term" # Terminal
+        "$mod, D, exec, $term --confirm-close-surface=false -e btop" # System monitor
 
         # rofi
         "$mod, Space, exec, rofi -show combi -combi-modes \"window,drun,ssh\" -modes combi" # App launcher

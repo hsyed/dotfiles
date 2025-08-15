@@ -6,7 +6,7 @@
     ./waybar.nix
     ./wofi.nix
     ./rofi.nix
-    ./kitty.nix
+    ./ghostty.nix
     ./idle.nix
     ./lock.nix
     ./wpaperd.nix
@@ -22,6 +22,8 @@
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
     noto-fonts # For Noto Serif/Sans
+    noto-fonts-extra # Additional font families
+    noto-fonts-emoji # Color emoji support
     nerd-fonts.caskaydia-mono # For Caskaydia Mono Nerd Font
   ];
 

@@ -85,8 +85,11 @@
     enable = true;
     targets = {
       qt.enable = true;
+
+      # The following apps just work/look better using their innate gruvbox themes.
       neovim.enable = false;
       zed.enable = false;
+      ghostty.enable = false;
       rofi.enable = false;
     };
   };
