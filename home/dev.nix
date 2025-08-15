@@ -124,6 +124,24 @@
 
     vscode.enable = true;
 
-    zellij.enable = true;
+    zellij = {
+      enable = true;
+      settings = {
+        simplified_ui = true;
+        pane_frames = false;
+        theme = "gruvbox-dark";
+
+        keybinds = {
+          normal = {
+            unbind = [
+              "Ctrl h" # ctrl+h is used by lazyvim.
+            ];
+            "bind \"Ctrl m\"" = {
+              SwitchToMode = "move";
+            };
+          };
+        };
+      };
+    };
   };
 }
