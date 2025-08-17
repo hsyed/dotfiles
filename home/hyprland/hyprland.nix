@@ -15,13 +15,13 @@
         "$mod SHIFT, V, togglefloating"
 
         "$mod, M, exec, spotify" # Spotify
-        "$mod, E, exec, dolphin" # File manager
         "$mod, B, exec, chromium --new-window --ozone-platform=wayland" # Browser
         "$mod, Escape, exec, hyprlock --immediate" # Lock screen without grace period for credentials
 
         # terminal
         "$mod, Return, exec, $term" # Terminal
         "$mod, D, exec, $term --confirm-close-surface=false -e btop" # System monitor
+        "$mod, E, exec, [float] $term --confirm-close-surface=false -e yazi" # File manager
 
         # rofi
         "$mod, Space, exec, rofi -show combi -combi-modes \"window,drun,ssh\" -modes combi" # App launcher

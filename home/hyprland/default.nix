@@ -11,11 +11,11 @@
     ./lock.nix
     ./wpaperd.nix
     ./swaync.nix
+    ./yazi.nix
   ];
 
   home.packages = with pkgs; [
     hyprshot # Screenshot utility for Hyprland
-    kdePackages.dolphin
     wl-clipboard # for cli tools to interact with the wayland clipboard
 
     # fonts
@@ -41,6 +41,7 @@
       "ddkjiahejlhfcafbddmgiahcphecmpfh" # ublock origin lite
     ];
   };
+
 
   xdg.userDirs = {
     enable = true;

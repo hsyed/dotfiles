@@ -14,14 +14,13 @@
     pkgs.nixd # nix lsp
     pkgs.nodejs
     pkgs.fd
+    pkgs.lsd # modern ls replacement
     pkgs.sqlite
     pkgs.deno
     pkgs.cue
     pkgs.nil # Abother Nix LSP (?)
     # Markdown LSP -- this is a dotnet app -- mason maanged version has issue linking to icu 😭.
     pkgs.marksman
-    pkgs.torrential
-    pkgs.mpv # media player
     pkgs.docker-compose # docker-compose for podman
     pkgs.podman-desktop # docker desktop for podman
     pkgs.kubectl # Kubernetes CLI
@@ -69,6 +68,12 @@
       };
     };
 
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
+
     zed-editor = {
       enable = true;
       extensions = [
@@ -106,6 +111,10 @@
         "nx.home.switch" = "nh home switch --ask ~/.dotfiles";
         "nx.clean" = "nh clean all --ask --keep 10";
         cd = "z"; # use zoxide for cd
+        ls = "lsd";
+        ll = "lsd -l";
+        la = "lsd -la";
+        tree = "lsd --tree";
       };
 
       oh-my-zsh = {
