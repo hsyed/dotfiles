@@ -39,6 +39,7 @@
   # Bootloader.
   boot = {
     loader.systemd-boot.enable = true; # DO NOT CHANGE!
+    loader.systemd-boot.configurationLimit = 10;
     loader.efi.canTouchEfiVariables = true;
     consoleLogLevel = 3;
     initrd = {
