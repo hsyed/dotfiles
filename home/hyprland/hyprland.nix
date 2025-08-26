@@ -148,7 +148,7 @@
       # Window rules
       windowrulev2 = [
         "opacity 0.98 0.95, class:.*"
-        "opacity 1.0 1.0, class:^(chromium-browser)$"
+        "opacity 1.0 1.0, class:^(chromium-browser|mpv)$"
       ];
 
       # Master layout configuration (see: https://wiki.hypr.land/Configuring/Master-Layout/)
