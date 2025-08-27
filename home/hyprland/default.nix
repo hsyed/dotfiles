@@ -42,7 +42,6 @@
     ];
   };
 
-
   xdg.userDirs = {
     enable = true;
     # create the standard XDG user directories if they are missing like ~/Documents, ~/Downloads, etc.
