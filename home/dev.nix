@@ -58,13 +58,17 @@
 
     git = {
       enable = true;
-      userName = "Hassan Syed";
-      userEmail = "h.a.syed@gmail.com";
-      aliases = {
-        st = "status";
-      };
-      extraConfig = {
-        core.editor = "nvim"; # lazygit picks this up
+      settings = {
+        user = {
+          name = "Hassan Syed";
+          email = "h.a.syed@gmail.com";
+        };
+        alias = {
+          st = "status";
+        };
+        core = { 
+          editor = "nvim"; # lazygit picks this up 
+        };
       };
     };
 

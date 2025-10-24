@@ -10,7 +10,7 @@
     # installVimSyntax = false;
 
     settings = {
-      theme = "GruvboxDark";
+      theme = "Gruvbox Dark";
     };
   };
 }
