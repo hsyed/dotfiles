@@ -22,8 +22,8 @@
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
     noto-fonts # For Noto Serif/Sans
-    noto-fonts-extra # Additional font families
-    noto-fonts-emoji # Color emoji support
+    noto-fonts # Additional font families
+    noto-fonts-color-emoji # Color emoji support
     nerd-fonts.caskaydia-mono # For Caskaydia Mono Nerd Font
   ];
 

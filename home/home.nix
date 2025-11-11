@@ -28,9 +28,9 @@
     pkgs.spotify
     pkgs.discord
     pkgs.signal-desktop-bin
-    pkgs.protonup # manage proton runtime updates (gaming related)
+    pkgs.protonup-ng # manage proton runtime updates (gaming related)
     pkgs.zoom-us
-    pkgs.torrential
+    pkgs.transmission_4
     pkgs.mpv # media player
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
