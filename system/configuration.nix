@@ -74,7 +74,11 @@
   };
 
   services = {
-    tailscale.enable = true;
+    tailscale = {
+      enable = true;
+      # "client" or "both" transitively configure the kernel reverse path filtering to "loose", this is needed for exit nodes to function correctly.
+      useRoutingFeatures = "client";
+    };
 
     # use keyd to make the windows layout behave more like a mac.
     keyd = {
