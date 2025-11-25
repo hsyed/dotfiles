@@ -9,6 +9,7 @@
     pkgs.rustup # Rust toolchain manager
     pkgs.go # Go programming language
     pkgs.gopls # go LSP
+    pkgs.protobuf # protocol buffers
     pkgs.clang # C/C++ compiler
     pkgs.mold # fast linker
     pkgs.nixd # nix lsp
@@ -66,8 +67,8 @@
         alias = {
           st = "status";
         };
-        core = { 
-          editor = "nvim"; # lazygit picks this up 
+        core = {
+          editor = "nvim"; # lazygit picks this up
         };
       };
     };
