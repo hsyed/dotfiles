@@ -55,4 +55,8 @@
     enable = true;
     allowImages = true; # rofi does not deal with images well (tiny icons).
   };
+
+  services.tailscale-systray = {
+    enable = true;
+  };
 }
