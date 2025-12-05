@@ -70,6 +70,9 @@
         core = {
           editor = "nvim"; # lazygit picks this up
         };
+        init = {
+          defaultBranch = "main";
+        };
       };
     };
 
