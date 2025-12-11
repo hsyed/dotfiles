@@ -17,6 +17,7 @@
   home.packages = with pkgs; [
     hyprshot # Screenshot utility for Hyprland
     wl-clipboard # for cli tools to interact with the wayland clipboard
+    wtype # Wayland text input tool. currently installed so that rofi-emoji works properly in wayland
 
     # fonts
     nerd-fonts.jetbrains-mono
