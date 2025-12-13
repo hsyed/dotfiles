@@ -160,6 +160,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "ydotool" # Allow user to use ydotool for programmatic input
     ];
     packages = [ ];
   };
@@ -172,6 +173,10 @@
     # TODO: nh comes with garbage cleaning functionality that can be wired up with a systemd time, investigate.
     nh.enable = true;
     zsh.enable = true;
+
+    # ydotool enables programmatic input to XWayland and Wayland applications
+    # Used by emoji pickers and automation tools to type into applications
+    ydotool.enable = true;
   };
   users.defaultUserShell = pkgs.zsh;
 

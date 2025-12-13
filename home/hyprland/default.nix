@@ -15,9 +15,12 @@
   ];
 
   home.packages = with pkgs; [
+    # TODO: move the next 3 components to the system level configuration
     hyprshot # Screenshot utility for Hyprland
     wl-clipboard # for cli tools to interact with the wayland clipboard
-    wtype # Wayland text input tool. currently installed so that rofi-emoji works properly in wayland
+    wtype # Wayland text input tool.abort
+
+    rofimoji # Standalone emoji picker with better XWayland support via ydotool
 
     # fonts
     nerd-fonts.jetbrains-mono

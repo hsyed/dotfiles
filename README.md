@@ -11,15 +11,6 @@ Combined NixOS and Home Manager flake for user `hsyed` on host `catharsis`.
 - **Audio**: PipeWire with ALSA/PulseAudio compatibility
 - **Shell**: zsh (default)
 
-## Development Setup
-
-**Dynamic Linking Support**: `nix-ld` is enabled to support development tools that require dynamic linking outside the Nix store. This enables:
-
-- **RustRover** - JetBrains Rust IDE (precompiled binary)
-- **Neovim** - System-level installation with custom Lua configuration
-- **VSCode / Zed** - Modern editors requiring system library access
-- Other language servers and development utilities
-
 ## Structure
 
 - `system/` - NixOS system modules
@@ -30,3 +21,19 @@ Combined NixOS and Home Manager flake for user `hsyed` on host `catharsis`.
 
 This repository is designed to be modified with Claude Code agent assistance.
 
+## Notes
+
+### Emojis and Emoji pickers
+
+Emojis once selected need to be injected into apps via either Wayland or X11/XWayland. Pickers can inject a char directly or go via the clipboard.
+
+Rofimoji has the broadest support and to get it injecting in all places both ydotool (for char injection) and the clipboard mode via wl-clipboard/wl-copy is needed.
+
+### Out for store / dynamic linking
+
+**Dynamic Linking Support**: `nix-ld` is enabled to support development tools that require dynamic linking outside the Nix store. This enables:
+
+- **RustRover** - JetBrains Rust IDE (precompiled binary)
+- **Neovim** - System-level installation with custom Lua configuration
+- **VSCode / Zed** - Modern editors requiring system library access
+- Other language servers and development utilities

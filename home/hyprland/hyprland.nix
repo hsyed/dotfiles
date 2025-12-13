@@ -26,7 +26,7 @@
         # rofi
         "$mod, Space, exec, rofi -show combi -combi-modes \"window,drun,ssh\" -modes combi" # App launcher
         "$mod CTRL, C, exec, rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons" # Clipboard history
-        "$mod CTRL, Space, exec, rofi -show emoji" # Emoji picker
+        "$mod CTRL, Space, exec, rofimoji --action type clipboard --typer ydotool --clipboarder wl-copy" # Emoji picker with ydotool for XWayland support
 
         # apps
         "$mod SHIFT, A, exec, $webapp=\"https://claude.ai/new\""
