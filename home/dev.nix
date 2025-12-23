@@ -5,6 +5,7 @@
     pkgs.k9s # Kubernetes CLI
     pkgs.claude-code # AI powered code editor
     pkgs.gh # GitHub CLI
+    pkgs.nushell
     pkgs.rustc # Rust compiler
     pkgs.rustup # Rust toolchain manager
     pkgs.go # Go programming language
