@@ -112,17 +112,18 @@
       alsa.support32Bit = true; # cuz i saw it somewhere
     };
 
-    # greetd is in charge of starting hyprland. The way it is configured no tty are started (at all) and hyoprland is launched directly.
-    # no tty with auotologin configured but the first session logs in without asking for credentials.
+    # greetd starts hyprland directly with no tty - first session auto-logs in without credentials.
+    # The -e -D Hyprland flags exclusively set XDG_CURRENT_DESKTOP=Hyprland to fix portal detection.
+    # See: https://github.com/hyprwm/Hyprland/discussions/12661
     greetd = {
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd 'uwsm start hyprland-uwsm.desktop'";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd 'uwsm start -e -D Hyprland hyprland-uwsm.desktop'";
           user = "greeter";
         };
         initial_session = {
-          command = "uwsm start hyprland-uwsm.desktop";
+          command = "uwsm start -e -D Hyprland hyprland-uwsm.desktop";
           user = "hsyed";
         };
       };

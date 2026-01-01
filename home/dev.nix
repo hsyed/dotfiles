@@ -4,6 +4,7 @@
     pkgs.ripgrep # rg better than grep.
     pkgs.k9s # Kubernetes CLI
     pkgs.claude-code # AI powered code editor
+    pkgs.amp-cli # amp for terminal
     pkgs.gh # GitHub CLI
     pkgs.nushell
     pkgs.rustc # Rust compiler
