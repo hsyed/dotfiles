@@ -30,6 +30,7 @@
     pkgs.signal-desktop-bin
     pkgs.protonup-ng # manage proton runtime updates (gaming related)
     pkgs.zoom-us
+    pkgs.dua # disk usage analyzer
     pkgs.transmission_4-gtk # torrent client
     pkgs.mpv # media player
     # # You can also create simple shell scripts directly inside your
