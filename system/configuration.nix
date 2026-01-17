@@ -169,10 +169,14 @@
   programs = {
     # nix-ld is used here to enable dynamic linking outside the nix store, this is to support development tooling.
     nix-ld.enable = true;
+
     # nh is a wrapper for nix management tools for nixos and home-manager. It builds on an intermediate tool (nvd).
     # The main thing we reached for it for is the diff view and an ask step.
     # TODO: nh comes with garbage cleaning functionality that can be wired up with a systemd time, investigate.
-    nh.enable = true;
+    nh = {
+      enable = true;
+      flake = "${config.users.users.hsyed.home}/.dotfiles";
+    };
     zsh.enable = true;
 
     # ydotool enables programmatic input to XWayland and Wayland applications
