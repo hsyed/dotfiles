@@ -87,7 +87,7 @@
         "SHIFT, PRINT, exec, hyprshot --clipboard-only -m window"
 
         # Wallpaper control
-        "$mod, slash, exec, wpaperctl next"
+        "$mod, slash, exec, $HOME/.local/bin/swwutil next"
       ];
 
       # Mouse bindings
@@ -146,9 +146,9 @@
       };
 
       # Window rules
-      windowrulev2 = [
-        "opacity 0.98 0.95, class:.*"
-        "opacity 1.0 1.0, class:^(chromium-browser|mpv)$"
+      windowrule = [
+        "match:class (.*), opacity 0.98 0.95"
+        "match:class (chromium-browser|mpv), opacity 1.0 1.0"
       ];
 
       # Master layout configuration (see: https://wiki.hypr.land/Configuring/Master-Layout/)

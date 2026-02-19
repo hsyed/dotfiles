@@ -9,7 +9,7 @@
     ./ghostty.nix
     ./idle.nix
     ./lock.nix
-    ./wpaperd.nix
+    ./sww.nix
     ./swaync.nix
     ./yazi.nix
   ];
