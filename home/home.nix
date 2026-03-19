@@ -27,7 +27,7 @@
   home.packages = [
     pkgs.spotify
     pkgs.discord
-    pkgs.signal-desktop-bin
+    pkgs.signal-desktop
     pkgs.protonup-ng # manage proton runtime updates (gaming related)
     pkgs.zoom-us
     pkgs.dua # disk usage analyzer
