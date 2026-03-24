@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -50,7 +50,10 @@
     enable = true;
     # create the standard XDG user directories if they are missing like ~/Documents, ~/Downloads, etc.
     createDirectories = true;
+    setSessionVariables = true;
   };
+
+  gtk.gtk4.theme = config.gtk.theme;
 
   # Polkit authentication agent
   services.hyprpolkitagent.enable = true;
