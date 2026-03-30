@@ -22,12 +22,12 @@
       #!/usr/bin/env bash
       WALLPAPER_DIR="$HOME/Pictures/wallpapers"
       STATE_FILE="$HOME/.cache/swwutil_index"
-      
+
       mkdir -p "$(dirname "$STATE_FILE")"
-      
+
       ALL_PAPERS=($(ls -1 "$WALLPAPER_DIR" | sort))
       PAPER_COUNT=''${#ALL_PAPERS[@]}
-      
+
       if [[ "$1" == "next" ]]; then
         CURRENT_IDX=$(cat "$STATE_FILE" 2>/dev/null || echo 0)
         NEXT_IDX=$(( (CURRENT_IDX + 1) % PAPER_COUNT ))
