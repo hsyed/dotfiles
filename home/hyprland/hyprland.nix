@@ -87,7 +87,7 @@
         "SHIFT, PRINT, exec, hyprshot --clipboard-only -m window"
 
         # Wallpaper control
-        "$mod, slash, exec, $HOME/.local/bin/swwutil next"
+        "$mod, slash, exec, $HOME/.local/bin/awwwutil next"
       ];
 
       # Mouse bindings
