@@ -32,7 +32,21 @@
         "$mod SHIFT, A, exec, $webapp=\"https://claude.ai/new\""
         "$mod SHIFT, X, exec, $webapp=\"https://x.com\""
         "$mod SHIFT, Y, exec, $webapp=\"https://youtube.com\""
-        "$mod SHIFT, W, exec, $webapp=\"https://web.whatsapp.com\""
+
+        # Master layout orientation — Q/W/E map spatially to left/center/right, S swaps master.
+        #
+        # In master layout, the screen is divided into a master area and a slave stack.
+        # Orientation controls which side the master occupies:
+        #
+        #   orientationleft   (Q): master on left,   slaves fill right  → e.g. 1:1, 2:1, 1:2
+        #   orientationcenter (W): master in center,  slaves on both sides → e.g. 1:2:1, 1:2:2
+        #   orientationright  (E): master on right,   slaves fill left   → e.g. 1:1, 1:2, 2:1
+        #   swapwithmaster    (S): focused window becomes master, old master demoted to slave
+        #                         — use this to canonically pick which window is master
+        "$mod SHIFT, Q, layoutmsg, orientationleft"
+        "$mod SHIFT, W, layoutmsg, orientationcenter"
+        "$mod SHIFT, E, layoutmsg, orientationright"
+        "$mod SHIFT, S, layoutmsg, swapwithmaster"
 
         # Move focus with mod + vim keys
         "$mod, h, movefocus, l"
