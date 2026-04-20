@@ -13,7 +13,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../common/stylix-theme.nix
+    ../../common/stylix-theme.nix
   ];
 
   # This value determines the NixOS release from which the default

@@ -31,7 +31,7 @@
         "catharsis" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./system/configuration.nix
+            ./system/catharsis/configuration.nix
             stylix.nixosModules.stylix
           ];
         };
