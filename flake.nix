@@ -11,6 +11,7 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
   };
 
   outputs =
@@ -18,6 +19,7 @@
       nixpkgs,
       home-manager,
       stylix,
+      determinate,
       ...
     }:
     let
@@ -33,6 +35,7 @@
           modules = [
             ./system/catharsis/configuration.nix
             stylix.nixosModules.stylix
+            determinate.nixosModules.default
           ];
         };
       };
