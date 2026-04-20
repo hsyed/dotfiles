@@ -33,6 +33,7 @@
     pkgs.dua # disk usage analyzer
     pkgs.transmission_4-gtk # torrent client
     pkgs.mpv # media player
+    pkgs.logseq # note taker
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:

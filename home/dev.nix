@@ -23,6 +23,7 @@
     pkgs.deno
     pkgs.cue
     pkgs.nil # Abother Nix LSP (?)
+    pkgs.uv # currently installed for mcp support for logseq
     # Markdown LSP -- this is a dotnet app -- mason maanged version has issue linking to icu 😭.
     pkgs.marksman
     pkgs.docker-compose # docker-compose for podman
