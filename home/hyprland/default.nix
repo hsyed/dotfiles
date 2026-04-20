@@ -29,6 +29,27 @@
     noto-fonts # Additional font families
     noto-fonts-color-emoji # Color emoji support
     nerd-fonts.caskaydia-mono # For Caskaydia Mono Nerd Font
+
+    # Desktop applications
+    spotify
+    discord
+    signal-desktop
+    zoom-us
+    transmission_4-gtk # torrent client
+    mpv # media player
+    logseq # note taker
+    sox # audio tool required for claude-code voice input
+    protonup-ng # manage proton runtime updates (gaming related)
+    dua # disk usage analyzer
+
+    # TODO these two should be moved somewhere else
+    pkgs.docker-compose # docker-compose for podman
+    pkgs.podman-desktop # docker desktop for podman
+
+    (pkgs.jetbrains.rust-rover.override {
+      #jdk = pkgs.jdk; # uncomment this if there is an issue building with the jebtrains jdk
+    })
+
   ];
 
   programs.chromium = {
@@ -43,6 +64,19 @@
       "aeblfdkhhhdcdjpifhhbdiojplfjncoa" # 1password
       "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
       "ddkjiahejlhfcafbddmgiahcphecmpfh" # ublock origin lite
+    ];
+  };
+
+  programs.zed-editor = {
+    enable = true;
+    extensions = [
+      "nix"
+      "rust"
+      "java"
+      "python"
+      "go"
+      "typescript"
+      "html"
     ];
   };
 

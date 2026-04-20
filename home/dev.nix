@@ -4,9 +4,6 @@
     pkgs.ripgrep # rg better than grep.
     pkgs.k9s # Kubernetes CLI
     pkgs.claude-code # AI powered code editor
-    pkgs.sox # audio tool required for claude-code voice input
-    pkgs.amp-cli # amp for terminal
-    pkgs.gh # GitHub CLI
     pkgs.nushell
     pkgs.rustc # Rust compiler
     pkgs.rustup # Rust toolchain manager
@@ -26,13 +23,8 @@
     pkgs.uv # currently installed for mcp support for logseq
     # Markdown LSP -- this is a dotnet app -- mason maanged version has issue linking to icu 😭.
     pkgs.marksman
-    pkgs.docker-compose # docker-compose for podman
-    pkgs.podman-desktop # docker desktop for podman
     pkgs.kubectl # Kubernetes CLI
     pkgs.kind # Kubernetes in Docker
-    (pkgs.jetbrains.rust-rover.override {
-      #jdk = pkgs.jdk; # uncomment this if there is an issue building with the jebtrains jdk
-    })
   ];
 
   # This creates a symlink which ultimately resolves to the ~/.dotfile directory.
@@ -84,19 +76,6 @@
       enable = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
-    };
-
-    zed-editor = {
-      enable = true;
-      extensions = [
-        "nix"
-        "rust"
-        "java"
-        "python"
-        "go"
-        "typescript"
-        "html"
-      ];
     };
 
     zsh = {
