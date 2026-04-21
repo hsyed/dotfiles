@@ -12,19 +12,18 @@
     pkgs.protobuf # protocol buffers
     pkgs.clang # C/C++ compiler
     pkgs.mold # fast linker
-    pkgs.nixd # nix lsp
     pkgs.nodejs
     pkgs.fd
     pkgs.lsd # modern ls replacement
     pkgs.sqlite
     pkgs.deno
     pkgs.cue
-    pkgs.nil # Abother Nix LSP (?)
     pkgs.uv # currently installed for mcp support for logseq
     # Markdown LSP -- this is a dotnet app -- mason maanged version has issue linking to icu 😭.
     pkgs.marksman
     pkgs.kubectl # Kubernetes CLI
     pkgs.kind # Kubernetes in Docker
+    pkgs.statix # linter for nix files used nil_ls via lazvim/mason
   ];
 
   # This creates a symlink which ultimately resolves to the ~/.dotfile directory.
