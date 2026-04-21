@@ -16,7 +16,7 @@
 
         "$mod, M, exec, spotify" # Spotify
         "$mod, B, exec, chromium --new-window --ozone-platform=wayland" # Browser
-        "$mod, Escape, exec, hyprlock --immediate" # Lock screen without grace period for credentials
+        "$mod, Escape, exec, hyprlock" # Lock screen without grace period for credentials
 
         # terminal
         "$mod, Return, exec, $term" # Terminal
