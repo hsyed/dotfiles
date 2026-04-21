@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   programs.waybar = {
     enable = true;
     systemd = {

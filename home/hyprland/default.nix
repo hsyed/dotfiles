@@ -89,15 +89,14 @@
 
   gtk.gtk4.theme = config.gtk.theme;
 
-  # Polkit authentication agent
-  services.hyprpolkitagent.enable = true;
+  services = {
+    hyprpolkitagent.enable = true;
 
-  services.cliphist = {
-    enable = true;
-    allowImages = true; # rofi does not deal with images well (tiny icons).
-  };
+    cliphist = {
+      enable = true;
+      allowImages = true; # rofi does not deal with images well (tiny icons).
+    };
 
-  services.tailscale-systray = {
-    enable = true;
+    tailscale-systray.enable = true;
   };
 }

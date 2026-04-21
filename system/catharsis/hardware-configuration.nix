@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
@@ -13,27 +12,30 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "nvme"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+      ];
+      kernelModules = [ ];
 
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "ahci"
-    "nvme"
-    "usbhid"
-    "usb_storage"
-    "sd_mod"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+      luks.devices."luks-5b2768f5-4b49-494a-9358-590eb4d9f2fd".device =
+        "/dev/disk/by-uuid/5b2768f5-4b49-494a-9358-590eb4d9f2fd";
+    };
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/c5729179-e839-4d56-925e-c17bde49d839";
     fsType = "btrfs";
     options = [ "subvol=@" ];
   };
-
-  boot.initrd.luks.devices."luks-5b2768f5-4b49-494a-9358-590eb4d9f2fd".device =
-    "/dev/disk/by-uuid/5b2768f5-4b49-494a-9358-590eb4d9f2fd";
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/EFB9-3E17";
