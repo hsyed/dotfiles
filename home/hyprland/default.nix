@@ -12,6 +12,7 @@
     ./awww.nix
     ./swaync.nix
     ./yazi.nix
+    ./chromium.nix
   ];
 
   home.packages = with pkgs; [
@@ -51,34 +52,6 @@
     })
 
   ];
-
-  programs.chromium = {
-    enable = true;
-    commandLineArgs = [
-      "--enable-features=UseOzonePlatform,WaylandWindowDecorations"
-      "--ozone-platform=wayland"
-      "--gtk-version=4"
-      "--enable-wayland-ime"
-    ];
-    extensions = [
-      "aeblfdkhhhdcdjpifhhbdiojplfjncoa" # 1password
-      "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
-      "ddkjiahejlhfcafbddmgiahcphecmpfh" # ublock origin lite
-    ];
-  };
-
-  programs.zed-editor = {
-    enable = true;
-    extensions = [
-      "nix"
-      "rust"
-      "java"
-      "python"
-      "go"
-      "typescript"
-      "html"
-    ];
-  };
 
   xdg.userDirs = {
     enable = true;
