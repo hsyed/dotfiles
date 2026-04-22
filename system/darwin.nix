@@ -24,6 +24,9 @@
     enable = true;
     onActivation.cleanup = "zap"; # pkgs not declared will be cleaned up
     casks = [ "ghostty" ];
+    masApps = {
+      "Tailscale" = 1475387142;
+    };
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
