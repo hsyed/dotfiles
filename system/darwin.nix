@@ -18,12 +18,19 @@
 
   environment.variables.NH_FLAKE = "${config.users.users.hsyed.home}/.dotfiles";
 
+  environment.systemPath = [ "/opt/homebrew/bin" "/opt/homebrew/sbin" ];
+
   system.primaryUser = "hsyed";
+
+  security.pam.services.sudo_local.touchIdAuth = true;
+  
+  # 3 finger app drag and text highlighting
+  system.defaults.trackpad.TrackpadThreeFingerDrag = true;
 
   homebrew = {
     enable = true;
     onActivation.cleanup = "zap"; # pkgs not declared will be cleaned up
-    casks = [ "ghostty" ];
+    casks = [ "ghostty" "signal" "logseq"];
     masApps = {
       "Tailscale" = 1475387142;
     };
