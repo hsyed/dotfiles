@@ -45,6 +45,7 @@
     enable = true;
     onActivation.cleanup = "zap"; # pkgs not declared will be cleaned up
     casks = [
+      "claude" # claude desktop
       "ghostty"
       "signal"
       "logseq"
