@@ -1,11 +1,27 @@
-# etup "hsyed@personal" on Darwin
+# Setup "hsyed@personal" on Darwin
 
-First install [Determinate nix](https://docs.determinate.systems/determinate-nix/#getting-started).
+1. Install [Determinate Nix](https://docs.determinate.systems/determinate-nix/#getting-started).
 
-Then checkout `github.com/hsyed/dotfiles to ~/.dotfiles/`
+2. Check out this repo:
 
-Install Homebrew `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+   ```
+   git clone https://github.com/hsyed/dotfiles ~/.dotfiles
+   ```
 
-Bootstrap nix-darwin with `sudo run nix-darwin -- switch --flake ~/.dotfiles#personal`
+3. Install Homebrew:
 
-Bootstrap home-manager with `nix run home-manager -- switch --flake ~/.dotfiles#hsyed@personal`
+   ```
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+
+4. Bootstrap nix-darwin:
+
+   ```
+   nix run nix-darwin -- switch --flake ~/.dotfiles#personal
+   ```
+
+5. Bootstrap home-manager:
+
+   ```
+   nix run home-manager -- switch --flake ~/.dotfiles#hsyed@personal
+   ```

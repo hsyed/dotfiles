@@ -1,5 +1,17 @@
 This repo contains a Nix flake for various workstations.
 
+# Nix helpers
+
+Shell aliases defined in `home/dev.nix` for managing the flake:
+
+| Alias | Command | Purpose |
+|---|---|---|
+| `nx.fmt` | `nix fmt` | Format all nix files |
+| `nx.verify` | `nix flake check` | Verify the flake |
+| `nx.sys.switch` | `nh darwin/os switch` | Rebuild and switch system config |
+| `nx.home.switch` | `nh home switch` | Rebuild and switch home-manager config |
+| `nx.clean` | `nh clean all --keep 10` | Remove old generations (keeps 10) |
+
 # Common resources
 
 The following common files and folders exist in this repo.
