@@ -12,6 +12,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -20,11 +24,13 @@
       home-manager,
       stylix,
       determinate,
+      nix-darwin,
       ...
     }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      pkgsDarwin = nixpkgs.legacyPackages."aarch64-darwin";
     in
     {
       formatter.${system} = pkgs.nixfmt-tree;
@@ -55,6 +61,31 @@
 
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
+        };
+      };
+
+      darwinConfigurations = {
+        "personal" = nix-darwin.lib.darwinSystem {
+          modules = [
+            ./system/darwin.nix
+            determinate.darwinModules.default
+            {
+              networking.hostName = "personal";
+              networking.computerName = "Hassans Macbook";
+            }
+          ];
+        };
+      };
+
+      homeConfigurations = {
+        "hsyed@personal" = home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgsDarwin;
+          modules = [
+            ./home/home.nix
+            ./home/dev.nix
+            ./home/darwin
+            stylix.homeModules.stylix
+          ];
         };
       };
     };

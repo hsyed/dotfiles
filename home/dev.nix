@@ -98,7 +98,11 @@
       shellAliases = {
         "nx.fmt" = "env -C ~/.dotfiles nix fmt";
         "nx.verify" = "nix flake check ~/.dotfiles";
-        "nx.sys.switch" = "nh os switch --ask ~/.dotfiles";
+        "nx.sys.switch" =
+          if pkgs.stdenv.isDarwin then
+            "nh darwin switch --ask ~/.dotfiles"
+          else
+            "nh os switch --ask ~/.dotfiles";
         "nx.home.switch" = "nh home switch --ask ~/.dotfiles";
         "nx.clean" = "nh clean all --ask --keep 10";
         cd = "z"; # use zoxide for cd

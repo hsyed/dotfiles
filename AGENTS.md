@@ -16,8 +16,10 @@ The following common files and folders exist in this repo.
 * Nixos configuration in `system/catharsis/configuration.nix`
 * home-manager setup including:
   * the Hyprland desktop environment via `home/hyprland`
-* nix-ld to enable certain developer tooling which require linking outside the Nix store
+* nix-ld to enable certain developer tooling which require linking outside the nix store
 
 ## Darwin
 
 * VMs and Workstations will be configured from the same derivations, use `uname` to determine if on Darwin.
+* `system/darwin.nix` contains the nix-darwin configuration.
+* `home/darwin/default.nix` pulls in darwin specific desktop environment stuff

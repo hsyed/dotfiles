@@ -6,7 +6,7 @@
     ./waybar.nix
     ./wofi.nix
     ./rofi.nix
-    ./ghostty.nix
+    ../apps/ghostty.nix
     ./idle.nix
     ./lock.nix
     ./awww.nix
@@ -53,6 +53,8 @@
     createDirectories = true;
     setSessionVariables = true;
   };
+
+  stylix.targets.qt.enable = true;
 
   gtk.gtk4.theme = config.gtk.theme;
 

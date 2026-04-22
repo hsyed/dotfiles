@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ../common/stylix-theme.nix
@@ -12,7 +12,7 @@
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     username = "hsyed";
-    homeDirectory = "/home/hsyed";
+    homeDirectory = if pkgs.stdenv.isDarwin then "/Users/hsyed" else "/home/hsyed";
 
     # This value determines the Home Manager release that your configuration is
     # compatible with. This helps avoid breakage when a new Home Manager release
@@ -73,8 +73,6 @@
   stylix = {
     enable = true;
     targets = {
-      qt.enable = true;
-
       # The following apps just work/look better using their innate gruvbox themes.
       neovim.enable = false;
       zed.enable = false;
