@@ -9,8 +9,18 @@ return {
       -- disable this for the time being, annoying lints
       -- opts.servers.marksman.init_options.markdownlint = false
 
-      -- disable nil and get it as a nixpkg, mason has trouble linking it on Darwin
-      opts.servers.nil_ls = { mason = false }
+      opts.servers.nil_ls = {
+        -- disable nil and get it as a nixpkg, mason has trouble linking it on Darwin
+        mason = false,
+        settings = {
+          ["nil"] = {
+            nix = {
+              -- disable the fetching of all flake inputs into the store each time we open a nil file
+              flake = { autoArchive = false },
+            },
+          },
+        },
+      }
 
       nvim_lsp.denols.setup({
         on_attach = on_attach,
