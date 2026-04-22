@@ -3,9 +3,12 @@
 {
   determinateNix.enable = true;
 
+  nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = [
     pkgs.vim
     pkgs.nh
+    pkgs._1password-gui
   ];
 
   fonts.packages = with pkgs; [
