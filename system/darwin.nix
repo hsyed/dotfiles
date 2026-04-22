@@ -30,11 +30,12 @@
 
   system = {
     primaryUser = "hsyed";
-    # 3 finger app drag and text highlighting
-    defaults.trackpad.TrackpadThreeFingerDrag = true;
-    # autohide the dock
-    defaults.dock.autohide = true; # default shell on catalina
-
+    defaults = {
+      # 3 finger app drag and text highlighting
+      trackpad.TrackpadThreeFingerDrag = true;
+      # autohide the dock
+      dock.autohide = true;
+    };
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
     stateVersion = 4;
