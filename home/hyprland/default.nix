@@ -27,7 +27,6 @@
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
     noto-fonts # For Noto Serif/Sans
-    noto-fonts # Additional font families
     noto-fonts-color-emoji # Color emoji support
     nerd-fonts.caskaydia-mono # For Caskaydia Mono Nerd Font
 
@@ -43,9 +42,13 @@
     protonup-ng # manage proton runtime updates (gaming related)
     dua # disk usage analyzer
 
+    pavucontrol # used as general audio control
+    pamixer # used for muting
+
+
     # TODO these two should be moved somewhere else
-    pkgs.docker-compose # docker-compose for podman
-    pkgs.podman-desktop # docker desktop for podman
+    docker-compose # docker-compose for podman
+    podman-desktop # docker desktop for podman
 
     (pkgs.jetbrains.rust-rover.override {
       #jdk = pkgs.jdk; # uncomment this if there is an issue building with the jebtrains jdk

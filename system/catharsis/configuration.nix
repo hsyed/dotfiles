@@ -184,13 +184,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
-    neovim
     usbutils # meeded for lsusb
     libnotify # for notify-send command
-    rtkit # needed for pipewire low latench stuff, not automatically installed
-    tailscale
-    pkgs.pavucontrol # used as general audio control
-    pkgs.pamixer # used for muting
     pkgs.mangohud # gaming stats overlay
     pkgs.unzip
   ];
