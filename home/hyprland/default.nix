@@ -16,18 +16,17 @@
   ];
 
   home.packages = with pkgs; [
-    # TODO: move the next 3 components to the system level configuration
     hyprshot # Screenshot utility for Hyprland
     wl-clipboard # for cli tools to interact with the wayland clipboard
     wtype # Wayland text input tool.abort
-
     rofimoji # Standalone emoji picker with better XWayland support via ydotool
+    pavucontrol # used as general audio control
+    pamixer # used for muting
+    docker-compose # docker-compose for podman
+    podman-desktop # docker desktop for podman
 
     # fonts
-    nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
-    noto-fonts # For Noto Serif/Sans
-    noto-fonts-color-emoji # Color emoji support
     nerd-fonts.caskaydia-mono # For Caskaydia Mono Nerd Font
 
     # Desktop applications
@@ -41,14 +40,6 @@
     sox # audio tool required for claude-code voice input
     protonup-ng # manage proton runtime updates (gaming related)
     dua # disk usage analyzer
-
-    pavucontrol # used as general audio control
-    pamixer # used for muting
-
-
-    # TODO these two should be moved somewhere else
-    docker-compose # docker-compose for podman
-    podman-desktop # docker desktop for podman
 
     (pkgs.jetbrains.rust-rover.override {
       #jdk = pkgs.jdk; # uncomment this if there is an issue building with the jebtrains jdk
