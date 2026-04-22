@@ -49,6 +49,7 @@
       "ghostty"
       "signal"
       "logseq"
+      "orbstack"
     ];
     masApps = {
       "Tailscale" = 1475387142;
