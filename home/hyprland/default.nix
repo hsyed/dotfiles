@@ -22,8 +22,6 @@
     rofimoji # Standalone emoji picker with better XWayland support via ydotool
     pavucontrol # used as general audio control
     pamixer # used for muting
-    docker-compose # docker-compose for podman
-    podman-desktop # docker desktop for podman
 
     # fonts
     nerd-fonts.fira-code

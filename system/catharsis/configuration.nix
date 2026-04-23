@@ -73,6 +73,8 @@
       enable = true;
       # "client" or "both" transitively configure the kernel reverse path filtering to "loose", this is needed for exit nodes to function correctly.
       useRoutingFeatures = "client";
+      # Allow local LAN and Docker bridge traffic to bypass the exit node. We want traffic to flow over the docker bridge freely
+      extraSetFlags = [ "--exit-node-allow-lan-access=true" ];
     };
 
     # use keyd to make the windows layout behave more like a mac.
@@ -157,6 +159,7 @@
       "networkmanager"
       "wheel"
       "ydotool" # Allow user to use ydotool for programmatic input
+      "docker"
     ];
     packages = [ ];
   };
@@ -184,6 +187,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
+    docker-compose
     usbutils # meeded for lsusb
     libnotify # for notify-send command
     pkgs.mangohud # gaming stats overlay
@@ -198,15 +202,8 @@
   #   enableSSHSupport = true;
   # };
 
-  # Enable podman for rootless containers
-  virtualisation = {
-    containers.enable = true;
-
-    podman = {
-      enable = true;
-      dockerCompat = true; # Create docker alias for podman
-      defaultNetwork.settings.dns_enabled = true;
-    };
+  virtualisation.docker = {
+    enable = true;
   };
 
   hardware.graphics = {
