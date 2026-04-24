@@ -25,6 +25,8 @@
     pkgs.kind # Kubernetes in Docker
     pkgs.statix # linter for nix files used nil_ls via lazvim/mason
     pkgs.neovim
+    pkgs.codex
+    pkgs.kcl
   ];
 
   # This creates a symlink which ultimately resolves to the ~/.dotfile directory.

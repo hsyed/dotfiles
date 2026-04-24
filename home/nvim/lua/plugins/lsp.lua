@@ -20,6 +20,10 @@ return {
         cmd = { "cue", "lsp" },
       }
 
+      vim.filetype.add({ extension = { k = "kcl" } })
+
+      opts.servers.kcl = {}
+
       opts.servers.nil_ls = {
         -- disable nil and get it as a nixpkg, mason has trouble linking it on Darwin
         mason = false,
