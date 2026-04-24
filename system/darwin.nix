@@ -50,6 +50,7 @@
       "signal"
       "logseq"
       "orbstack"
+      "zoom"
     ];
     masApps = {
       "Tailscale" = 1475387142;
