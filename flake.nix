@@ -28,12 +28,19 @@
       ...
     }:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      linuxSystem = "x86_64-linux";
+      supportedFormatterSystems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+      pkgs = nixpkgs.legacyPackages.${linuxSystem};
       pkgsDarwin = nixpkgs.legacyPackages."aarch64-darwin";
     in
     {
-      formatter.${system} = pkgs.nixfmt-tree;
+      formatter = nixpkgs.lib.genAttrs supportedFormatterSystems (
+        system: nixpkgs.legacyPackages.${system}.nixfmt-tree
+      );
 
       nixosConfigurations = {
         "catharsis" = nixpkgs.lib.nixosSystem {

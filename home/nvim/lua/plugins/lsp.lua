@@ -1,5 +1,11 @@
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "cue" })
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
       local nvim_lsp = require("lspconfig")
@@ -8,6 +14,11 @@ return {
 
       -- disable this for the time being, annoying lints
       -- opts.servers.marksman.init_options.markdownlint = false
+
+      opts.servers.cue_lsp = {
+        mason = false,
+        cmd = { "cue", "lsp" },
+      }
 
       opts.servers.nil_ls = {
         -- disable nil and get it as a nixpkg, mason has trouble linking it on Darwin
