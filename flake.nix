@@ -61,7 +61,7 @@
           # the path to your home.nix.
           modules = [
             ./home/home.nix
-            ./home/dev.nix
+            ./home/dev
             ./home/hyprland
             stylix.homeModules.stylix
           ];
@@ -89,7 +89,7 @@
           pkgs = pkgsDarwin;
           modules = [
             ./home/home.nix
-            ./home/dev.nix
+            ./home/dev
             ./home/darwin
             stylix.homeModules.stylix
           ];

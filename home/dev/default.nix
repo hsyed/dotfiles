@@ -1,9 +1,13 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 {
+  imports = [
+    ./npm.nix
+    ./nvim_lazyvim.nix
+  ];
+
   home.packages = [
     pkgs.ripgrep # rg better than grep.
     pkgs.k9s # Kubernetes CLI
-    pkgs.claude-code # AI powered code editor
     pkgs.nushell
     pkgs.rustup # Rust toolchain manager
     pkgs.go # Go programming language
@@ -24,18 +28,8 @@
     pkgs.kubectl # Kubernetes CLI
     pkgs.kind # Kubernetes in Docker
     pkgs.statix # linter for nix files used nil_ls via lazvim/mason
-    pkgs.neovim
-    pkgs.codex # OpenAI coding harness
     pkgs.kcl # config generator
   ];
-
-  # This creates a symlink which ultimately resolves to the ~/.dotfile directory.
-  # The config can't be immutable as lazy uses a lock file. A better approach for
-  # lazyvim config might just be to have a manual script to setup symlinks for cases
-  # like lazyvim. Or moving vim config to the flake.
-  xdg.configFile."nvim" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/home/nvim";
-  };
 
   programs = {
     jq.enable = true;

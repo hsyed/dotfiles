@@ -19,5 +19,8 @@ result-*
 # Direnv
 .direnv/
 
+# Local tooling
+.codex
+
 # Hardware configuration (if auto-generated) // TODO auto generate this ?
 # hardware-configuration.nix

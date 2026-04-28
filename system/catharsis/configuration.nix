@@ -192,6 +192,7 @@
     libnotify # for notify-send command
     pkgs.mangohud # gaming stats overlay
     pkgs.unzip
+    pkgs.bubblewrap # sandboxing helper used by Codex on Linux
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
