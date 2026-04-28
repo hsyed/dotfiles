@@ -9,44 +9,25 @@ _: {
       mainBar = {
         layer = "top";
         position = "top";
+        margin-top = 3;
+        margin-left = 1156;
+        margin-right = 1156;
 
         modules-left = [
           "hyprland/workspaces"
-          "custom/right-arrow-dark"
-          "custom/right-arrow-light"
           "tray"
-          "custom/right-arrow-dark"
         ];
 
         modules-center = [
-          "custom/left-arrow-dark"
-          "clock#1"
-          "custom/left-arrow-light"
-          "custom/left-arrow-dark"
-          "clock#2"
-          "custom/right-arrow-dark"
-          "custom/right-arrow-light"
-          "clock#3"
-          "custom/right-arrow-dark"
+          "clock"
         ];
 
         modules-right = [
-          "custom/left-arrow-dark"
           "custom/notification"
-          "custom/left-arrow-light"
-          "custom/left-arrow-dark"
           "pulseaudio"
-          "custom/left-arrow-light"
-          "custom/left-arrow-dark"
           "memory"
-          "custom/left-arrow-light"
-          "custom/left-arrow-dark"
           "cpu"
-          "custom/left-arrow-light"
-          "custom/left-arrow-dark"
           "battery"
-          "custom/left-arrow-light"
-          "custom/left-arrow-dark"
           "disk"
         ];
 
@@ -68,54 +49,27 @@ _: {
           on-click-right = "swaync-client -d -sw";
         };
 
-        # Custom arrow modules
-        "custom/left-arrow-dark" = {
-          format = "";
-          tooltip = false;
-        };
-        "custom/left-arrow-light" = {
-          format = "";
-          tooltip = false;
-        };
-        "custom/right-arrow-dark" = {
-          format = "";
-          tooltip = false;
-        };
-        "custom/right-arrow-light" = {
-          format = "";
-          tooltip = false;
-        };
-
         # Workspaces module adapted for Hyprland
         "hyprland/workspaces" = {
           disable-scroll = true;
           format = "{name}";
         };
 
-        # Three clock modules
-        "clock#1" = {
-          format = "{:%a}";
-          tooltip = false;
-        };
-        "clock#2" = {
-          format = "{:%m-%d}";
-          tooltip = false;
-        };
-        "clock#3" = {
-          format = "{:%H:%M}";
+        clock = {
+          format = "{:%a %d %b  %H:%M}";
           tooltip = false;
         };
 
         # System modules
         pulseaudio = {
-          format = "{icon} {volume:2}%";
-          format-bluetooth = "{icon}  {volume}%";
-          format-muted = "MUTE";
+          format = "VOL {volume:2}%";
+          format-bluetooth = "BT {volume:2}%";
+          format-muted = "MUT {volume:2}%";
           format-icons = {
-            headphones = "";
+            headphones = "󰋋";
             default = [
-              ""
-              ""
+              ""
+              ""
             ];
           };
           scroll-step = 5;
@@ -125,7 +79,7 @@ _: {
 
         memory = {
           interval = 5;
-          format = "Mem {}%";
+          format = "RAM {}%";
         };
 
         cpu = {
@@ -141,17 +95,17 @@ _: {
           };
           format = "{icon} {capacity}%";
           format-icons = [
-            ""
-            ""
-            ""
-            ""
-            ""
+            "󰂎"
+            "󰁺"
+            "󰁾"
+            "󰂁"
+            "󰁹"
           ];
         };
 
         disk = {
           interval = 5;
-          format = "Disk {percentage_used:2}%";
+          format = "SSD {percentage_used:2}%";
           path = "/";
         };
 
@@ -165,30 +119,21 @@ _: {
 
     style = ''
       * {
-        font-size: 20px;
+        font-size: 15px;
         font-family: "JetBrainsMono Nerd Font", monospace;
+        border: none;
+        border-radius: 0;
       }
 
       window#waybar {
-        background: #292b2e;
+        background: rgba(41, 43, 46, 0.72);
+        border: 1px solid rgba(253, 246, 227, 0.18);
+        border-radius: 10px;
         color: #fdf6e3;
       }
 
-      #custom-right-arrow-dark,
-      #custom-left-arrow-dark {
-        color: #1a1a1a;
-      }
-
-      #custom-right-arrow-light,
-      #custom-left-arrow-light {
-        color: #292b2e;
-        background: #1a1a1a;
-      }
-
       #workspaces,
-      #clock.1,
-      #clock.2,
-      #clock.3,
+      #clock,
       #custom-notification,
       #pulseaudio,
       #memory,
@@ -197,47 +142,79 @@ _: {
       #disk,
       #tray {
         background: #1a1a1a;
+        border: 1px solid #33363b;
+        border-radius: 999px;
+        margin: 4px 3px;
+      }
+
+      #workspaces {
+        padding: 0 4px;
       }
 
       #workspaces button {
-        padding: 0 2px;
-        color: #fdf6e3;
+        min-width: 22px;
+        padding: 0 7px;
+        margin: 3px 2px;
+        color: #9d968a;
+        border-radius: 999px;
       }
 
-      #workspaces button.focused {
-        color: #268bd2;
+      #workspaces button.focused,
+      #workspaces button.active {
+        color: #fdf6e3;
+        background: #2f5f7d;
       }
 
       #workspaces button:hover {
         box-shadow: inherit;
         text-shadow: inherit;
-        background: #1a1a1a;
-        border: #1a1a1a;
-        padding: 0 3px;
+        color: #fdf6e3;
+        background: #33363b;
+        padding: 0 7px;
+      }
+
+      #workspaces button.urgent {
+        color: #fdf6e3;
+        background: #8a3a3a;
       }
 
       #pulseaudio {
-        color: #268bd2;
+        color: #e8e2d2;
+        border-color: #3f6f90;
+        min-width: 58px;
       }
 
       #memory {
-        color: #2aa198;
+        color: #e8e2d2;
+        border-color: #4d746b;
+        min-width: 58px;
       }
 
       #cpu {
-        color: #6c71c4;
+        color: #e8e2d2;
+        border-color: #67648e;
+        min-width: 50px;
       }
 
       #battery {
-        color: #859900;
+        color: #e8e2d2;
+        border-color: #6f7f3a;
       }
 
       #disk {
-        color: #b58900;
+        color: #e8e2d2;
+        border-color: #8a6f32;
+        min-width: 58px;
       }
 
       #custom-notification {
-        color: #dc322f;
+        color: #e8e2d2;
+        border-color: #8a3a3a;
+      }
+
+      #pulseaudio.muted {
+        color: #a8a29a;
+        border-color: #7a3f45;
       }
 
       #clock,
@@ -247,12 +224,14 @@ _: {
       #cpu,
       #battery,
       #disk {
-        padding: 0 10px;
+        padding: 0 12px;
       }
 
       #tray {
-        padding: 0 10px;
+        padding: 0 12px;
+        margin-left: 10px;
       }
+
     '';
   };
 }
