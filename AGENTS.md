@@ -22,13 +22,15 @@ The following common files and folders exist in this repo.
 
 # Conventions and principles
 
-## Dev modules
-
-Keep `home/dev/default.nix` focused on simple shared developer tools. If a tool
-touches multiple configuration branches, needs non-standard setup such as
-out-of-store symlinks, or requires enough config/comments to document its
-behavior, split it into a focused module under `home/dev/` and import it from
-`home/dev/default.nix`.
+* Keep `home/dev/default.nix` focused on simple shared developer tools. If a tool
+  touches multiple configuration branches, needs non-standard setup such as
+  out-of-store symlinks, or requires enough config/comments to document its
+  behavior, split it into a focused module under `home/dev/` and import it from
+  `home/dev/default.nix`.
+* Shared modules may use `isDarwin` and `isLinux` checks when behavior needs to
+  vary by platform. Some modules are intentionally shared across Linux and
+  Darwin, so prefer explicit platform guards over host-specific assumptions when
+  adding cross-platform developer tooling.
 
 # Systems
 
