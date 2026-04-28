@@ -93,7 +93,7 @@
 
       shellAliases = {
         "nx.fmt" = "env -C ~/.dotfiles nix fmt";
-        "nx.verify" = "nix flake check ~/.dotfiles";
+        "nx.verify" = "nix flake check --all-systems ~/.dotfiles";
         "nx.sys.switch" =
           if pkgs.stdenv.isDarwin then
             "nh darwin switch --ask ~/.dotfiles"

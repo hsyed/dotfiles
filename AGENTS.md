@@ -22,6 +22,7 @@ The following common files and folders exist in this repo.
 
 # Conventions and principles
 
+* The dotfiles repo lives at `~/.dotfiles`.
 * Keep `home/dev/default.nix` focused on simple shared developer tools. If a tool
   touches multiple configuration branches, needs non-standard setup such as
   out-of-store symlinks, or requires enough config/comments to document its
