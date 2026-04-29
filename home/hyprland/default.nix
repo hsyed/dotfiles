@@ -33,7 +33,7 @@
     signal-desktop
     zoom-us
     transmission_4-gtk # torrent client
-    mpv # media player
+    mpv-unwrapped # media player; avoid wrapped yt-dlp dependency pulling deno/rusty-v8
     logseq # note taker
     sox # audio tool required for claude-code voice input
     protonup-ng # manage proton runtime updates (gaming related)

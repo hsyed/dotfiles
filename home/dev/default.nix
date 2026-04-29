@@ -19,7 +19,6 @@
     pkgs.fd
     pkgs.lsd # modern ls replacement
     pkgs.sqlite
-    pkgs.deno
     pkgs.cue
     pkgs.nil # don't use lazyvim - Mason nil, it doesnt link properly on Darwin
     pkgs.uv # currently installed for mcp support for logseq
