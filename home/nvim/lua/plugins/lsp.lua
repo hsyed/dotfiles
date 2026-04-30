@@ -18,6 +18,7 @@ return {
       opts.servers.cue_lsp = {
         mason = false,
         cmd = { "cue", "lsp" },
+        filetypes = { "cue" },
       }
 
       vim.filetype.add({ extension = { k = "kcl" } })
@@ -49,6 +50,9 @@ return {
               },
               home_personal = {
                 expr = '(builtins.getFlake "/home/hsyed/.dotfiles").homeConfigurations."hsyed@personal".options',
+              },
+              home_catharsis = {
+                expr = '(builtins.getFlake "/home/hsyed/.dotfiles").homeConfigurations."hsyed@catharsis".options',
               },
             },
           },
