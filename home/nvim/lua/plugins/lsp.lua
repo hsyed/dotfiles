@@ -24,14 +24,32 @@ return {
 
       opts.servers.kcl = {}
 
+      -- use nixd over nil_ls, disblaes mason from fetching nil_ls
       opts.servers.nil_ls = {
-        -- disable nil and get it as a nixpkg, mason has trouble linking it on Darwin
+        enabled = false,
+      }
+
+      opts.servers.nixd = {
+        -- disable Mason and get nixd as a nixpkg, Mason has trouble linking it on Darwin
         mason = false,
         settings = {
-          ["nil"] = {
-            nix = {
-              -- disable the fetching of all flake inputs into the store each time we open a nil file
-              flake = { autoArchive = false },
+          nixd = {
+            formatting = {
+              command = { "nixfmt" },
+            },
+            nixpkgs = {
+              expr = 'import (builtins.getFlake "/home/hsyed/.dotfiles").inputs.nixpkgs { }',
+            },
+            options = {
+              nixos = {
+                expr = '(builtins.getFlake "/home/hsyed/.dotfiles").nixosConfigurations.catharsis.options',
+              },
+              darwin = {
+                expr = '(builtins.getFlake "/home/hsyed/.dotfiles").darwinConfigurations.personal.options',
+              },
+              home_personal = {
+                expr = '(builtins.getFlake "/home/hsyed/.dotfiles").homeConfigurations."hsyed@personal".options',
+              },
             },
           },
         },

@@ -20,7 +20,10 @@
     pkgs.lsd # modern ls replacement
     pkgs.sqlite
     pkgs.cue
-    pkgs.nil # don't use lazyvim - Mason nil, it doesnt link properly on Darwin
+    pkgs.nixd # LSP for nix, more advanced than nil
+    pkgs.nixfmt # Nix formatter used by nixd and nix fmt
+    pkgs.nix-tree # Inspect why Nix store closures are large and what depends on what
+    pkgs.ruff # Python linter/formatter, replaces flake8/isort/pyupgrade-style tooling
     pkgs.uv # currently installed for mcp support for logseq
     # Markdown LSP -- this is a dotnet app -- mason maanged version has issue linking to icu 😭.
     pkgs.marksman
