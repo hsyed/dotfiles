@@ -1,5 +1,15 @@
 { pkgs, ... }:
 {
+  # direnv 2.37.1 checkPhase hangs on macOS (0% CPU) due to zsh sigsuspend regression in nixpkgs darwin stdenv
+  # (nixpkgs #513019, fixed in PR #513971 — remove overlay once that propagates to nixos-unstable)
+  nixpkgs.overlays = [
+    (_: prev: {
+      direnv = prev.direnv.overrideAttrs (_: {
+        doCheck = false;
+      });
+    })
+  ];
+
   imports = [
     ./npm.nix
     ./nvim_lazyvim.nix
