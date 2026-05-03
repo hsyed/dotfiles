@@ -231,6 +231,11 @@
 
   security.rtkit.enable = true; # makes pipewire go fast (low latench support?)
 
+  # gnome-keyring provides a libsecret-compatible daemon so apps like Zed, browsers,
+  # and VS Code can persist credentials and API keys across sessions.
+  # Without this, secrets are lost on logout since there's no GNOME session to start the daemon.
+  services.gnome.gnome-keyring.enable = true;
+
   # game config, see: https://www.youtube.com/watch?v=qlfm3MEbqYA
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true; # wraps a session in a micro compositor for performance reasons

@@ -18,39 +18,43 @@
   home.packages = [
     pkgs.ripgrep # rg better than grep.
     pkgs.k9s # Kubernetes CLI
-    pkgs.nushell
+    pkgs.nushell # A modern shell for building pipelines
     pkgs.rustup # Rust toolchain manager
     pkgs.go # Go programming language
     pkgs.gopls # go LSP
     pkgs.protobuf # protocol buffers
     pkgs.clang # C/C++ compiler
     pkgs.mold # fast linker
-    pkgs.nodejs
-    pkgs.fd
+    pkgs.nodejs # JavaScript runtime
+    pkgs.fd # fast find alternative
     pkgs.lsd # modern ls replacement
-    pkgs.sqlite
-    pkgs.cue
+    pkgs.sqlite # embedded SQL database
+    pkgs.cue # data constraint language
     pkgs.nixd # LSP for nix, more advanced than nil
     pkgs.nixfmt # Nix formatter used by nixd and nix fmt
     pkgs.nix-tree # Inspect why Nix store closures are large and what depends on what
     pkgs.ruff # Python linter/formatter, replaces flake8/isort/pyupgrade-style tooling
-    pkgs.uv # currently installed for mcp support for logseq
+    pkgs.uv # Python package manager, currently installed for mcp support for logseq
     # Markdown LSP -- this is a dotnet app -- mason maanged version has issue linking to icu 😭.
     pkgs.marksman
     pkgs.kubectl # Kubernetes CLI
+    pkgs.kubernetes-helm # Helm CLI
     pkgs.kind # Kubernetes in Docker
     pkgs.statix # linter for nix files used nil_ls via lazvim/mason
     pkgs.kcl # config generator
+    pkgs.ko # build go images direct to distroless
+    pkgs.tilt # local Kubernetes development tool
   ];
 
   programs = {
-    jq.enable = true;
-    btop.enable = true;
-    bat.enable = true;
-    gh.enable = true;
-    lazygit.enable = true;
+    jq.enable = true; # jq is like sed for JSON data
+    btop.enable = true; # Process/system monitoring tool (htop replacement)
+    bat.enable = true; # cat with syntax highlighting and git integration
+    gh.enable = true; # GitHub CLI
+    lazygit.enable = true; # terminal UI for git
 
     fzf = {
+      # fuzzy finder, press ctrl+r for fuzzy search of shell history
       enable = true;
       enableZshIntegration = true;
     };
