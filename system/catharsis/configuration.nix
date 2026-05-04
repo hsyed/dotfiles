@@ -165,8 +165,14 @@
   };
 
   programs = {
-    # nix-ld is used here to enable dynamic linking outside the nix store, this is to support development tooling.
-    nix-ld.enable = true;
+    nix-ld = {
+      # nix-ld is used here to enable dynamic linking outside the nix store, this is to support development tooling.
+      enable = true;
+      libraries = with pkgs; [
+        # libcap is needed by the codex-acp binary that Zed downloads to enable ACP-based AI assistance
+        libcap
+      ];
+    };
 
     # nh is a wrapper for nix management tools for nixos and home-manager. It builds on an intermediate tool (nvd).
     # The main thing we reached for it for is the diff view and an ask step.
