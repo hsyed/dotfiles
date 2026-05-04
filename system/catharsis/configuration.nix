@@ -193,6 +193,7 @@
     pkgs.mangohud # gaming stats overlay
     pkgs.unzip
     pkgs.bubblewrap # sandboxing helper used by Codex on Linux
+    pkgs.psmisc # killall, fuser, etc.
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
