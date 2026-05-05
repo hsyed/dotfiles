@@ -4,6 +4,8 @@
     pkgs.neovim
   ];
 
+  stylix.targets.neovim.enable = false;
+
   # This creates a symlink which ultimately resolves to the ~/.dotfile directory.
   # The config can't be immutable as lazy uses a lock file. A better approach for
   # lazyvim config might just be to have a manual script to setup symlinks for cases

@@ -12,4 +12,6 @@
       theme = "Gruvbox Dark";
     };
   };
+
+  stylix.targets.ghostty.enable = false;
 }

@@ -70,15 +70,7 @@
     enable = true;
   };
 
-  # Stylix theming configuration - specific home overrides
   stylix = {
     enable = true;
-    targets = {
-      # The following apps just work/look better using their innate gruvbox themes.
-      neovim.enable = false;
-      zed.enable = false;
-      ghostty.enable = false;
-      rofi.enable = false;
-    };
   };
 }

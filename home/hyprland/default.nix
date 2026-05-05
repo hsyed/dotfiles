@@ -7,6 +7,7 @@
     ./wofi.nix
     ./rofi.nix
     ../apps/ghostty.nix
+    ../apps/zed.nix
     ./idle.nix
     ./lock.nix
     ./awww.nix
@@ -35,7 +36,6 @@
     transmission_4-gtk # torrent client
     mpv-unwrapped # media player; avoid wrapped yt-dlp dependency pulling deno/rusty-v8
     logseq # note taker
-    zed-editor # code editor
     sox # audio tool required for claude-code voice input
     protonup-ng # manage proton runtime updates (gaming related)
     dua # disk usage analyzer
