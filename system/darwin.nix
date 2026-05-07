@@ -50,6 +50,7 @@
       "signal"
       "logseq"
       "orbstack"
+      "zed"
       "zoom"
     ];
     masApps = {
