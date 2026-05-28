@@ -35,6 +35,8 @@
       trackpad.TrackpadThreeFingerDrag = true;
       # autohide the dock
       dock.autohide = true;
+      # autohide the menu bar
+      NSGlobalDomain._HIHideMenuBar = true;
     };
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
