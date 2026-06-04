@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -14,6 +14,7 @@
     ./swaync.nix
     ./yazi.nix
     ./chromium.nix
+    ./logseq.nix
   ];
 
   home.packages = with pkgs; [
@@ -35,7 +36,6 @@
     zoom-us
     transmission_4-gtk # torrent client
     mpv-unwrapped # media player; avoid wrapped yt-dlp dependency pulling deno/rusty-v8
-    logseq # note taker
     sox # audio tool required for claude-code voice input
     protonup-ng # manage proton runtime updates (gaming related)
     dua # disk usage analyzer
@@ -54,8 +54,6 @@
   };
 
   stylix.targets.qt.enable = true;
-
-  gtk.gtk4.theme = config.gtk.theme;
 
   services = {
     hyprpolkitagent.enable = true;
