@@ -32,6 +32,9 @@ The following common files and folders exist in this repo.
   vary by platform. Some modules are intentionally shared across Linux and
   Darwin, so prefer explicit platform guards over host-specific assumptions when
   adding cross-platform developer tooling.
+* Do not treat repeated `homeConfigurations` attributes in `flake.nix` as bugs.
+  They may be intentional for separating workstation, platform, or configuration
+  branches; verify the actual evaluation behavior before proposing changes.
 
 # Systems
 
