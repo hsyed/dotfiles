@@ -70,6 +70,7 @@
       "spotify"
       "tailscale-app"
       "zoom"
+      "karabiner-elements"
     ];
   };
 

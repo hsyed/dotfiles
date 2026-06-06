@@ -1,0 +1,43 @@
+{
+  "profiles": [
+    {
+      "name": "Default profile",
+      "selected": true,
+      "virtual_hid_keyboard": {
+        "keyboard_type_v2": "ansi"
+      },
+      "complex_modifications": {
+        "parameters": {
+          "basic.to_if_alone_timeout_milliseconds": 300
+        },
+        "rules": [
+          {
+            "description": "Caps Lock: tap=toggle, hold=hyper (ctrl+opt+cmd+shift)",
+            "manipulators": [
+              {
+                "description": "Caps Lock: tap=toggle, hold=hyper (ctrl+opt+cmd+shift)",
+                "from": {
+                  "key_code": "caps_lock",
+                  "modifiers": { "optional": ["any"] }
+                },
+                "to": [
+                  {
+                    "key_code": "right_shift",
+                    "modifiers": ["right_command", "right_control", "right_option"]
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "caps_lock",
+                    "hold_down_milliseconds": 500
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

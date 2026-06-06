@@ -3,6 +3,7 @@
 {
   imports = [
     ./hammerspoon.nix
+    ./karabiner.nix
     ../apps/ghostty.nix
     ../apps/zed.nix
   ];
