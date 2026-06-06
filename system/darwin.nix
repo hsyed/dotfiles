@@ -33,10 +33,14 @@
     defaults = {
       # 3 finger app drag and text highlighting
       trackpad.TrackpadThreeFingerDrag = true;
-      # autohide the dock
-      dock.autohide = true;
       # autohide the menu bar
       NSGlobalDomain._HIHideMenuBar = true;
+      dock = {
+        autohide = true;
+        # avoid accidental gesture triggers and discourage reliance on these features
+        showMissionControlGestureEnabled = false;
+        showDesktopGestureEnabled = false;
+      };
       universalaccess = {
         # Replace large motion effects, such as Spaces switching, with simpler transitions.
         # macOS protects this domain; the terminal running darwin-rebuild needs Full Disk Access.
