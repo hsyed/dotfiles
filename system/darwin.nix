@@ -63,6 +63,7 @@
       "orbstack"
       "rectangle-pro"
       "zed"
+      "spotify"
       "tailscale-app"
       "zoom"
     ];
