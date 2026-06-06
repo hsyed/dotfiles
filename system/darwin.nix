@@ -37,6 +37,13 @@
       dock.autohide = true;
       # autohide the menu bar
       NSGlobalDomain._HIHideMenuBar = true;
+      universalaccess = {
+        # Replace large motion effects, such as Spaces switching, with simpler transitions.
+        # macOS protects this domain; the terminal running darwin-rebuild needs Full Disk Access.
+        reduceMotion = true;
+        # Make translucent UI surfaces such as the menu bar, sidebars, and controls more opaque.
+        reduceTransparency = true;
+      };
     };
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
@@ -46,18 +53,19 @@
   homebrew = {
     enable = true;
     onActivation.cleanup = "zap"; # pkgs not declared will be cleaned up
+    onActivation.extraFlags = [ "--force-cleanup" ];
     casks = [
       "claude" # claude desktop
       "ghostty"
+      "hammerspoon"
       "signal"
       "logseq"
       "orbstack"
+      "rectangle-pro"
       "zed"
+      "tailscale-app"
       "zoom"
     ];
-    masApps = {
-      "Tailscale" = 1475387142;
-    };
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.

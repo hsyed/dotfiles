@@ -14,13 +14,21 @@
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
 
-4. Bootstrap nix-darwin:
+4. Give the terminal app Full Disk Access.
+
+   The Darwin configuration writes protected macOS accessibility display
+   defaults. Give Full Disk Access to the app that will run the bootstrap
+   command, such as Terminal, then quit and reopen it. After Ghostty has been
+   installed, give Ghostty Full Disk Access as well if it will be used to run
+   future nix-darwin switches.
+
+5. Bootstrap nix-darwin:
 
    ```
    nix run nix-darwin -- switch --flake ~/.dotfiles#personal
    ```
 
-5. Bootstrap home-manager:
+6. Bootstrap home-manager:
 
    ```
    nix run home-manager -- switch --flake ~/.dotfiles#hsyed@personal

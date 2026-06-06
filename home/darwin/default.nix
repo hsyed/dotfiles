@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./hammerspoon.nix
     ../apps/ghostty.nix
     ../apps/zed.nix
   ];
