@@ -1,10 +1,15 @@
 local app_hyperkey = { "cmd", "alt", "ctrl", "shift" }
-local terminal_app = "ghostty"
 
-hs.hotkey.bind(app_hyperkey, "return", function()
-	hs.application.launchOrFocus(terminal_app)
-end)
+local app_bindings = {
+	{ key = "return", app = "ghostty" },
+	{ key = "b", app = "safari" },
+	{ key = "l", app = "Logseq" },
+	{ key = "m", app = "Spotify" },
+	{ key = "s", app = "Slack" },
+}
 
-hs.hotkey.bind(app_hyperkey, "b", function()
-	hs.application.launchOrFocus("safari")
-end)
+for _, binding in ipairs(app_bindings) do
+	hs.hotkey.bind(app_hyperkey, binding.key, function()
+		hs.application.launchOrFocus(binding.app)
+	end)
+end

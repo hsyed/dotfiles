@@ -63,6 +63,7 @@
       "ghostty"
       "hammerspoon"
       "signal"
+      "slack"
       "logseq"
       "orbstack"
       "rectangle-pro"
