@@ -60,14 +60,15 @@
           # Specify your home configuration modules here, for example,
           # the path to your home.nix.
           modules = [
+            {
+              home.username = "hsyed";
+              home.homeDirectory = "/home/hsyed";
+            }
             ./home/home.nix
             ./home/dev
             ./home/hyprland
             stylix.homeModules.stylix
           ];
-
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
         };
       };
 
@@ -88,6 +89,10 @@
         "hsyed@personal" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsDarwin;
           modules = [
+            {
+              home.username = "hsyed";
+              home.homeDirectory = "/Users/hsyed";
+            }
             ./home/home.nix
             ./home/dev
             ./home/darwin
