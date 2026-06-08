@@ -66,6 +66,7 @@
             {
               home.username = "hsyed";
               home.homeDirectory = "/home/hsyed";
+              programs.git.settings.user.email = "h.a.syed@gmail.com";
             }
             ./home/home.nix
             ./home/dev
@@ -95,6 +96,7 @@
             {
               home.username = "hsyed";
               home.homeDirectory = "/Users/hsyed";
+              programs.git.settings.user.email = "h.a.syed@gmail.com";
             }
             ./home/home.nix
             ./home/dev
@@ -124,6 +126,7 @@
             {
               home.username = "hassan.syed";
               home.homeDirectory = "/Users/hassan.syed";
+              programs.git.settings.user.email = "hassan.syed@alpaca.markets";
             }
             ./home/home.nix
             ./home/dev

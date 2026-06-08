@@ -70,7 +70,6 @@
       settings = {
         user = {
           name = "Hassan Syed";
-          email = "h.a.syed@gmail.com";
         };
         alias = {
           st = "status";
