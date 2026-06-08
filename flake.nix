@@ -75,12 +75,8 @@
       darwinConfigurations = {
         "personal" = nix-darwin.lib.darwinSystem {
           modules = [
-            ./system/darwin.nix
+            ./system/darwin/personal.nix
             determinate.darwinModules.default
-            {
-              networking.hostName = "personal";
-              networking.computerName = "Hassans Macbook";
-            }
           ];
         };
       };

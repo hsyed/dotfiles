@@ -12,7 +12,6 @@
 
   environment = {
     systemPackages = [
-      pkgs.vim
       pkgs.nh
       pkgs._1password-gui
     ];
@@ -63,7 +62,6 @@
       "ghostty"
       "hammerspoon"
       "signal"
-      "slack"
       "logseq"
       "orbstack"
       "rectangle-pro"
@@ -84,5 +82,10 @@
   users.users.hsyed = {
     name = "Hassan Syed";
     home = "/Users/hsyed";
+  };
+
+  networking = {
+    hostName = "personal";
+    computerName = "Hassans Macbook";
   };
 }
