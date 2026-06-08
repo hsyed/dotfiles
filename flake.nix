@@ -75,6 +75,7 @@
       darwinConfigurations = {
         "personal" = nix-darwin.lib.darwinSystem {
           modules = [
+            ./system/darwin/common.nix
             ./system/darwin/personal.nix
             determinate.darwinModules.default
           ];
