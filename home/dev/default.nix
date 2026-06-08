@@ -52,6 +52,7 @@
     bat.enable = true; # cat with syntax highlighting and git integration
     gh.enable = true; # GitHub CLI
     lazygit.enable = true; # terminal UI for git
+    gpg.enable = true;
 
     fzf = {
       # fuzzy finder, press ctrl+r for fuzzy search of shell history
@@ -160,5 +161,10 @@
         };
       };
     };
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    enableZshIntegration = true;
   };
 }
