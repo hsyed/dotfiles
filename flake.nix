@@ -108,7 +108,7 @@
       ###                                 work                                  ###
       #############################################################################
       darwinConfigurations = {
-        "work" = nix-darwin.lib.darwinSystem {
+        "Hassan-Syed-GHKP276W2K" = nix-darwin.lib.darwinSystem {
           modules = [
             ./system/darwin/common.nix
             ./system/darwin/work.nix
@@ -118,7 +118,7 @@
       };
 
       homeConfigurations = {
-        "hassan.syed@work" = home-manager.lib.homeManagerConfiguration {
+        "hassan.syed@Hassan-Syed-GHKP276W2K" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsDarwin;
           modules = [
             {
