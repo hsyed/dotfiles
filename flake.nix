@@ -42,6 +42,9 @@
         system: nixpkgs.legacyPackages.${system}.nixfmt-tree
       );
 
+      #############################################################################
+      ###                               catharsis                               ###
+      #############################################################################
       nixosConfigurations = {
         "catharsis" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -72,6 +75,9 @@
         };
       };
 
+      #############################################################################
+      ###                               personal                                ###
+      #############################################################################
       darwinConfigurations = {
         "personal" = nix-darwin.lib.darwinSystem {
           modules = [
@@ -89,6 +95,35 @@
             {
               home.username = "hsyed";
               home.homeDirectory = "/Users/hsyed";
+            }
+            ./home/home.nix
+            ./home/dev
+            ./home/darwin
+            stylix.homeModules.stylix
+          ];
+        };
+      };
+
+      #############################################################################
+      ###                                 work                                  ###
+      #############################################################################
+      darwinConfigurations = {
+        "work" = nix-darwin.lib.darwinSystem {
+          modules = [
+            ./system/darwin/common.nix
+            ./system/darwin/work.nix
+            determinate.darwinModules.default
+          ];
+        };
+      };
+
+      homeConfigurations = {
+        "hassan.syed@work" = home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgsDarwin;
+          modules = [
+            {
+              home.username = "hassan.syed";
+              home.homeDirectory = "/Users/hassan.syed";
             }
             ./home/home.nix
             ./home/dev

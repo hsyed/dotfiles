@@ -1,6 +1,19 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
+  environment = {
+    systemPackages = [
+      pkgs.nh
+    ];
+
+    variables.NH_FLAKE = "${config.users.users.${config.system.primaryUser}.home}/.dotfiles";
+
+    systemPath = [
+      "/opt/homebrew/bin"
+      "/opt/homebrew/sbin"
+    ];
+  };
+
   determinateNix.enable = true;
 
   nixpkgs.config.allowUnfree = true;
