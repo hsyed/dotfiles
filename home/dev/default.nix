@@ -38,6 +38,7 @@
     # Markdown LSP -- this is a dotnet app -- mason maanged version has issue linking to icu 😭.
     pkgs.marksman
     pkgs.kubectl # Kubernetes CLI
+    pkgs.kubectx # switch kubectl contexts
     pkgs.kubernetes-helm # Helm CLI
     pkgs.kind # Kubernetes in Docker
     pkgs.statix # linter for nix files used nil_ls via lazvim/mason
