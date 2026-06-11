@@ -8,7 +8,6 @@
 
   homebrew = {
     enable = true;
-    onActivation.cleanup = "zap"; # pkgs not declared will be cleaned up
     onActivation.extraFlags = [ "--force-cleanup" ];
     casks = [
       "ghostty"
@@ -17,6 +16,7 @@
       "rectangle-pro"
       "zed"
       "karabiner-elements"
+      "gcloud-cli"
     ];
   };
 

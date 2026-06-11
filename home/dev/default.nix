@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   # direnv 2.37.1 checkPhase hangs on macOS (0% CPU) due to zsh sigsuspend regression in nixpkgs darwin stdenv
   # (nixpkgs #513019, fixed in PR #513971 — remove overlay once that propagates to nixos-unstable)
@@ -13,6 +13,16 @@
   imports = [
     ./npm.nix
     ./nvim_lazyvim.nix
+  ];
+
+  home.sessionVariables = {
+    CC = "clang";
+    CGO_ENABLED = "0";
+  };
+
+  # XDG user-local binaries (pip --user, cargo, manual installs, etc.)
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.local/bin"
   ];
 
   home.packages = [

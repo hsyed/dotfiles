@@ -54,7 +54,6 @@
     #
     sessionVariables = {
       EDITOR = "nvim";
-      CC = "clang";
     };
   };
 
