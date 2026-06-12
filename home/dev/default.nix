@@ -49,6 +49,7 @@
     pkgs.marksman
     pkgs.kubectl # Kubernetes CLI
     pkgs.kubectx # switch kubectl contexts
+    pkgs.kubie # isolated kubectl contexts with shell sessions
     pkgs.kubernetes-helm # Helm CLI
     pkgs.kind # Kubernetes in Docker
     pkgs.statix # linter for nix files used nil_ls via lazvim/mason
@@ -128,6 +129,7 @@
             "nh os switch --ask ~/.dotfiles";
         "nx.home.switch" = "nh home switch --ask ~/.dotfiles";
         "nx.clean" = "nh clean all --ask --keep 10";
+        kc = "kubie ctx";
         cd = "z"; # use zoxide for cd
         ls = "lsd";
         ll = "lsd -l";
