@@ -10,9 +10,8 @@ their own fast-moving state when that makes the machine more useful.
 
 Non-Nix-managed patterns used on purpose:
 
-- `nix-ld` is enabled on Linux (`system/catharsis/configuration.nix`) to support
-  developer tooling that expects dynamic linking outside the Nix store. The same
-  pattern may be enabled on Darwin if it proves useful there.
+- `nix-ld` is enabled on Linux (`hosts/catharsis/configuration.nix`) to support
+  developer tooling that expects dynamic linking outside the Nix store.
 - `npm` uses the Nix-provided Node.js runtime, but global npm packages are
   installed under `~/.npm` (`home/dev/npm.nix`). This keeps CLIs such as Claude,
   Codex, and similar tools easy to update without waiting for nixpkgs.

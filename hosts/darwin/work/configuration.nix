@@ -1,6 +1,10 @@
 { ... }:
 
 {
+  imports = [
+    ../common.nix
+  ];
+
   # sudo now authenticates with touch id
   security.pam.services.sudo_local.touchIdAuth = true;
 

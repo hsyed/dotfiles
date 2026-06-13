@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,127 +20,26 @@
   };
 
   outputs =
-    {
-      nixpkgs,
-      home-manager,
-      stylix,
-      determinate,
-      nix-darwin,
-      ...
-    }:
-    let
-      linuxSystem = "x86_64-linux";
-      supportedFormatterSystems = [
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
         "x86_64-linux"
         "aarch64-darwin"
         "x86_64-darwin"
       ];
-      pkgs = nixpkgs.legacyPackages.${linuxSystem};
-      pkgsDarwin = nixpkgs.legacyPackages."aarch64-darwin";
-    in
-    {
-      formatter = nixpkgs.lib.genAttrs supportedFormatterSystems (
-        system: nixpkgs.legacyPackages.${system}.nixfmt-tree
-      );
 
-      #############################################################################
-      ###                               catharsis                               ###
-      #############################################################################
-      nixosConfigurations = {
-        "catharsis" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./system/catharsis/configuration.nix
-            stylix.nixosModules.stylix
-            determinate.nixosModules.default
-          ];
+      imports = [
+        inputs.home-manager.flakeModules.home-manager
+        inputs.nix-darwin.flakeModules.default
+        ./hosts/catharsis
+        ./hosts/darwin/personal
+        ./hosts/darwin/work
+      ];
+
+      perSystem =
+        { pkgs, ... }:
+        {
+          formatter = pkgs.nixfmt-tree;
         };
-      };
-
-      homeConfigurations = {
-        "hsyed@catharsis" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          # Specify your home configuration modules here, for example,
-          # the path to your home.nix.
-          modules = [
-            {
-              home.username = "hsyed";
-              home.homeDirectory = "/home/hsyed";
-              programs.git.settings.user.email = "h.a.syed@gmail.com";
-            }
-            ./home/home.nix
-            ./home/dev
-            ./home/hyprland
-            stylix.homeModules.stylix
-          ];
-        };
-      };
-
-      #############################################################################
-      ###                               personal                                ###
-      #############################################################################
-      darwinConfigurations = {
-        "personal" = nix-darwin.lib.darwinSystem {
-          modules = [
-            ./system/darwin/common.nix
-            ./system/darwin/personal.nix
-            determinate.darwinModules.default
-          ];
-        };
-      };
-
-      homeConfigurations = {
-        "hsyed@personal" = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgsDarwin;
-          modules = [
-            {
-              home.username = "hsyed";
-              home.homeDirectory = "/Users/hsyed";
-              programs.git.settings.user.email = "h.a.syed@gmail.com";
-            }
-            ./home/home.nix
-            ./home/dev
-            ./home/darwin
-            stylix.homeModules.stylix
-          ];
-        };
-      };
-
-      #############################################################################
-      ###                                 work                                  ###
-      #############################################################################
-      darwinConfigurations = {
-        "Hassan-Syed-GHKP276W2K" = nix-darwin.lib.darwinSystem {
-          modules = [
-            ./system/darwin/common.nix
-            ./system/darwin/work.nix
-            determinate.darwinModules.default
-          ];
-        };
-      };
-
-      homeConfigurations = {
-        "hassan.syed@Hassan-Syed-GHKP276W2K" = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgsDarwin;
-          modules = [
-            {
-              home.username = "hassan.syed";
-              home.homeDirectory = "/Users/hassan.syed";
-              programs.git.settings = {
-                user = {
-                  email = "hassan.syed@alpaca.markets";
-                  signingkey = "EDD5AF53575C26AF";
-                };
-                commit.gpgsign = true;
-              };
-            }
-            ./home/home.nix
-            ./home/dev
-            ./home/darwin
-            stylix.homeModules.stylix
-          ];
-        };
-      };
     };
 }

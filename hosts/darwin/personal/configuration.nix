@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ../common.nix
+  ];
+
   environment.systemPackages = [
     pkgs._1password-gui
   ];
