@@ -31,7 +31,7 @@
       imports = [
         inputs.home-manager.flakeModules.home-manager
         inputs.nix-darwin.flakeModules.default
-        ./hosts/catharsis
+        ./hosts/nixos/catharsis
         ./hosts/darwin/personal
         ./hosts/darwin/work
       ];

@@ -10,7 +10,7 @@ their own fast-moving state when that makes the machine more useful.
 
 Non-Nix-managed patterns used on purpose:
 
-- `nix-ld` is enabled on Linux (`hosts/catharsis/configuration.nix`) to support
+- `nix-ld` is enabled on Linux (`hosts/nixos/catharsis/configuration.nix`) to support
   developer tooling that expects dynamic linking outside the Nix store.
 - `npm` uses the Nix-provided Node.js runtime, but global npm packages are
   installed under `~/.npm` (`home/dev/npm.nix`). This keeps CLIs such as Claude,
