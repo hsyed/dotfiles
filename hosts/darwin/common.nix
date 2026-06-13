@@ -26,6 +26,22 @@
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
 
+  homebrew = {
+    enable = true;
+    onActivation.extraFlags = [ "--force-cleanup" ];
+    casks = [
+      "ghostty"
+      "hammerspoon"
+      "logseq"
+      "rectangle-pro"
+      "zed"
+      "karabiner-elements"
+    ];
+  };
+
+  # sudo now authenticates with touch id
+  security.pam.services.sudo_local.touchIdAuth = true;
+
   system = {
     defaults = {
       # 3 finger app drag and text highlighting
