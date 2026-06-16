@@ -8,6 +8,10 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   homebrew = {
+    brews = [
+      "argocd"
+      "helm"
+    ];
     casks = [
       "gcloud-cli"
     ];

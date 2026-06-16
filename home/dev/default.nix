@@ -50,7 +50,6 @@
     pkgs.kubectl # Kubernetes CLI
     pkgs.kubectx # switch kubectl contexts
     pkgs.kubie # isolated kubectl contexts with shell sessions
-    pkgs.kubernetes-helm # Helm CLI
     pkgs.kind # Kubernetes in Docker
     pkgs.statix # linter for nix files used nil_ls via lazvim/mason
     pkgs.kcl # config generator
@@ -152,8 +151,6 @@
         ];
       };
     };
-
-    vscode.enable = true;
 
     zellij = {
       enable = true;
