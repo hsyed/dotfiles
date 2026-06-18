@@ -55,6 +55,8 @@
     pkgs.kcl # config generator
     pkgs.ko # build go images direct to distroless
     pkgs.tilt # local Kubernetes development tool
+    pkgs.stern
+    pkgs.yq-go
   ];
 
   programs = {
