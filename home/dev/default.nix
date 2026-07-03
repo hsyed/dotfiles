@@ -51,6 +51,7 @@
     pkgs.kubectx # switch kubectl contexts
     pkgs.kubie # isolated kubectl contexts with shell sessions
     pkgs.kind # Kubernetes in Docker
+    pkgs.terraform # Infrastructure as code CLI
     pkgs.statix # linter for nix files used nil_ls via lazvim/mason
     pkgs.kcl # config generator
     pkgs.ko # build go images direct to distroless
