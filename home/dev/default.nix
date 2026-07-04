@@ -59,6 +59,7 @@
     pkgs.act # Run GitHub Actions locally
     pkgs.stern
     pkgs.yq-go
+    pkgs.keymapp # ZSA keyboard flashing/live-training
   ];
 
   programs = {
