@@ -32,6 +32,7 @@
     casks = [
       "ghostty"
       "hammerspoon"
+      "keepingyouawake"
       "logseq"
       "rectangle-pro"
       "zed"

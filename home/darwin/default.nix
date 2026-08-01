@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   imports = [
@@ -6,6 +6,10 @@
     ./karabiner.nix
     ../apps/ghostty.nix
     ../apps/zed.nix
+  ];
+
+  home.sessionPath = [
+    "${config.home.homeDirectory}/go/bin"
   ];
 
   services.jankyborders = {
