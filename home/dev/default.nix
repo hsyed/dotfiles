@@ -116,6 +116,11 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
 
+      initContent = ''
+        source <(${pkgs.kubectl}/bin/kubectl completion zsh)
+        compdef __start_kubectl k
+      '';
+
       history = {
         size = 10000;
         save = 10000;
@@ -135,6 +140,7 @@
             "nh os switch --ask ~/.dotfiles";
         "nx.home.switch" = "nh home switch --ask ~/.dotfiles";
         "nx.clean" = "nh clean all --ask --keep 10";
+        k = "kubectl";
         kc = "kubie ctx";
         cd = "z"; # use zoxide for cd
         ls = "lsd";
