@@ -113,10 +113,7 @@
           ids = [ "*" ];
 
           settings = {
-            main = {
-              leftalt = "leftmeta"; # switch alt with meta
-              leftmeta = "leftalt";
-            };
+            main = {};
           };
         };
       };
