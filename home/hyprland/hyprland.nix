@@ -1,5 +1,15 @@
-{ ... }:
+{ config, pkgs, ... }:
 {
+  # Hyprland 0.56.x: the default exec-once does
+  #   systemctl --user stop hyprland-session.target &&
+  #   systemctl --user start hyprland-session.target
+  # The "stop" propagates via BindsTo= through graphical-session.target
+  # into wayland-wm@.service, killing Hyprland itself with SIGTERM ~100ms
+  # after startup. See: https://github.com/hyprwm/Hyprland/issues/15688
+  wayland.windowManager.hyprland.systemd.extraCommands = [
+    "systemctl --user start hyprland-session.target"
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;

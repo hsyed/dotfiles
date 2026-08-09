@@ -113,7 +113,7 @@
           ids = [ "*" ];
 
           settings = {
-            main = {};
+            main = { };
           };
         };
       };
