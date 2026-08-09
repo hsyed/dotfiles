@@ -41,6 +41,7 @@
     pkgs.lsd # modern ls replacement
     pkgs.sqlite # embedded SQL database
     pkgs.postgresql # PostgreSQL server and client tools
+    pkgs.rainfrog # terminal database management UI
     pkgs.cue # data constraint language
     pkgs.nixd # LSP for nix, more advanced than nil
     pkgs.nixfmt # Nix formatter used by nixd and nix fmt
