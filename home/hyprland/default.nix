@@ -4,7 +4,6 @@
   imports = [
     ./hyprland.nix
     ./waybar.nix
-    ./wofi.nix
     ./rofi.nix
     ../apps/ghostty.nix
     ../apps/zed.nix

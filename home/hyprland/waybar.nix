@@ -1,4 +1,9 @@
-_: {
+{ config, ... }:
+let
+  c = config.lib.stylix.colors.withHashtag;
+  r = config.lib.stylix.colors;
+in
+{
   programs.waybar = {
     enable = true;
     systemd = {
@@ -27,7 +32,6 @@ _: {
           "pulseaudio"
           "memory"
           "cpu"
-          "battery"
           "disk"
         ];
 
@@ -39,9 +43,9 @@ _: {
           exec = ''
             count=$(swaync-client -c)
             if [ "$count" -gt 0 ]; then
-              echo "<span foreground='#dc322f'>󰂚 $count</span>"
+              echo "<span foreground='${c.base08}'>󰂚 $count</span>"
             else
-              echo "<span foreground='#666666'>󰂚</span>"
+              echo "<span foreground='${c.base03}'>󰂚</span>"
             fi
           '';
           interval = 1;
@@ -53,6 +57,7 @@ _: {
         "hyprland/workspaces" = {
           disable-scroll = true;
           format = "{name}";
+          show-special = true; # scratchpad shows up while it holds windows
         };
 
         clock = {
@@ -68,8 +73,8 @@ _: {
           format-icons = {
             headphones = "󰋋";
             default = [
-              ""
-              ""
+              ""
+              ""
             ];
           };
           scroll-step = 5;
@@ -85,22 +90,6 @@ _: {
         cpu = {
           interval = 5;
           format = "CPU {usage:2}%";
-        };
-
-        battery = {
-          states = {
-            good = 95;
-            warning = 30;
-            critical = 15;
-          };
-          format = "{icon} {capacity}%";
-          format-icons = [
-            "󰂎"
-            "󰁺"
-            "󰁾"
-            "󰂁"
-            "󰁹"
-          ];
         };
 
         disk = {
@@ -126,10 +115,10 @@ _: {
       }
 
       window#waybar {
-        background: rgba(41, 43, 46, 0.72);
-        border: 1px solid rgba(253, 246, 227, 0.18);
+        background: rgba(${r.base00-rgb-r}, ${r.base00-rgb-g}, ${r.base00-rgb-b}, 0.72);
+        border: 1px solid rgba(${r.base05-rgb-r}, ${r.base05-rgb-g}, ${r.base05-rgb-b}, 0.18);
         border-radius: 10px;
-        color: #fdf6e3;
+        color: ${c.base05};
       }
 
       #workspaces,
@@ -138,11 +127,10 @@ _: {
       #pulseaudio,
       #memory,
       #cpu,
-      #battery,
       #disk,
       #tray {
-        background: #1a1a1a;
-        border: 1px solid #33363b;
+        background: ${c.base00};
+        border: 1px solid ${c.base02};
         border-radius: 999px;
         margin: 4px 3px;
       }
@@ -155,66 +143,66 @@ _: {
         min-width: 22px;
         padding: 0 7px;
         margin: 3px 2px;
-        color: #9d968a;
+        color: ${c.base04};
         border-radius: 999px;
       }
 
       #workspaces button.focused,
       #workspaces button.active {
-        color: #fdf6e3;
-        background: #2f5f7d;
+        color: ${c.base00};
+        background: ${c.base0D};
       }
 
       #workspaces button:hover {
         box-shadow: inherit;
         text-shadow: inherit;
-        color: #fdf6e3;
-        background: #33363b;
+        color: ${c.base05};
+        background: ${c.base02};
         padding: 0 7px;
       }
 
       #workspaces button.urgent {
-        color: #fdf6e3;
-        background: #8a3a3a;
+        color: ${c.base00};
+        background: ${c.base08};
+      }
+
+      /* scratchpad pill matches the amber scratchpad window border */
+      #workspaces button.special {
+        color: ${c.base0A};
       }
 
       #pulseaudio {
-        color: #e8e2d2;
-        border-color: #3f6f90;
+        color: ${c.base05};
+        border-color: ${c.base0D};
         min-width: 58px;
       }
 
       #memory {
-        color: #e8e2d2;
-        border-color: #4d746b;
+        color: ${c.base05};
+        border-color: ${c.base0B};
         min-width: 58px;
       }
 
       #cpu {
-        color: #e8e2d2;
-        border-color: #67648e;
+        color: ${c.base05};
+        border-color: ${c.base0E};
         min-width: 50px;
       }
 
-      #battery {
-        color: #e8e2d2;
-        border-color: #6f7f3a;
-      }
-
       #disk {
-        color: #e8e2d2;
-        border-color: #8a6f32;
+        color: ${c.base05};
+        border-color: ${c.base0A};
         min-width: 58px;
       }
 
       #custom-notification {
-        color: #e8e2d2;
-        border-color: #8a3a3a;
+        color: ${c.base05};
+        border-color: ${c.base08};
       }
 
       #pulseaudio.muted {
-        color: #a8a29a;
-        border-color: #7a3f45;
+        color: ${c.base04};
+        border-color: ${c.base08};
       }
 
       #clock,
@@ -222,7 +210,6 @@ _: {
       #pulseaudio,
       #memory,
       #cpu,
-      #battery,
       #disk {
         padding: 0 12px;
       }
@@ -231,7 +218,6 @@ _: {
         padding: 0 12px;
         margin-left: 10px;
       }
-
     '';
   };
 }
