@@ -10,205 +10,28 @@
     "systemctl --user start hyprland-session.target"
   ];
 
+  # Live-editable Lua config, same pattern as nvim: ~/.config/hypr/main is an
+  # out-of-store symlink to ./lua in this repo. Edit + `hyprctl reload`, no
+  # home-manager switch needed.
+  xdg.configFile."hypr/main".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/home/hyprland/lua";
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
     portalPackage = null;
-    settings = {
-      "$term" = "ghostty";
-      "$mod" = "SUPER";
-      "$webapp" = "chromium --new-window --ozone-platform=wayland --app";
 
-      bind = [
-        "$mod, Q, killactive"
-        "$mod SHIFT, Escape, exit" # kill hyprland
-        "$mod SHIFT, V, togglefloating"
+    # hyprlang .conf configs are deprecated since Hyprland 0.55 (removed in
+    # 0.57). configType defaults to "hyprlang" while home.stateVersion < 26.05,
+    # so opt in to the Lua backend explicitly.
+    configType = "lua";
 
-        "$mod, M, exec, spotify" # Spotify
-        "$mod, B, exec, chromium --new-window --ozone-platform=wayland" # Browser
-        "$mod, Escape, exec, hyprlock" # Lock screen without grace period for credentials
-
-        # terminal
-        "$mod, Return, exec, $term" # Terminal
-        "$mod, D, exec, $term --confirm-close-surface=false -e btop" # System monitor
-        "$mod, E, exec, [float] $term --confirm-close-surface=false -e yazi" # File manager
-
-        # rofi
-        "$mod, Space, exec, rofi -show combi -combi-modes \"window,drun,ssh\" -modes combi" # App launcher
-        "$mod CTRL, C, exec, rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons" # Clipboard history
-        "$mod CTRL, Space, exec, rofimoji --action type clipboard --typer ydotool --clipboarder wl-copy" # Emoji picker with ydotool for XWayland support
-
-        # apps
-        "$mod SHIFT, A, exec, $webapp=\"https://claude.ai/new\""
-        "$mod SHIFT, X, exec, $webapp=\"https://x.com\""
-        "$mod SHIFT, Y, exec, $webapp=\"https://youtube.com\""
-
-        # Master layout orientation — Q/W/E map spatially to left/center/right, S swaps master.
-        #
-        # In master layout, the screen is divided into a master area and a slave stack.
-        # Orientation controls which side the master occupies:
-        #
-        #   orientationleft   (Q): master on left,   slaves fill right  → e.g. 1:1, 2:1, 1:2
-        #   orientationcenter (W): master in center,  slaves on both sides → e.g. 1:2:1, 1:2:2
-        #   orientationright  (E): master on right,   slaves fill left   → e.g. 1:1, 1:2, 2:1
-        #   swapwithmaster    (S): focused window becomes master, old master demoted to slave
-        #                         — use this to canonically pick which window is master
-        "$mod SHIFT, Q, layoutmsg, orientationleft"
-        "$mod SHIFT, W, layoutmsg, orientationcenter"
-        "$mod SHIFT, E, layoutmsg, orientationright"
-        "$mod SHIFT, S, layoutmsg, swapwithmaster"
-
-        # Move focus with mod + vim keys
-        "$mod, h, movefocus, l"
-        "$mod, l, movefocus, r"
-        "$mod, k, movefocus, u"
-        "$mod, j, movefocus, d"
-
-        # Move focus with mod + arrow keys
-        "$mod, left, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
-
-        # Move windows with mod + SHIFT + vim keys
-        "$mod SHIFT, h, movewindow, l"
-        "$mod SHIFT, l, movewindow, r"
-        "$mod SHIFT, k, movewindow, u"
-        "$mod SHIFT, j, movewindow, d"
-
-        # Move windows with mod + SHIFT + arrow keys
-        "$mod SHIFT, left, movewindow, l"
-        "$mod SHIFT, right, movewindow, r"
-        "$mod SHIFT, up, movewindow, u"
-        "$mod SHIFT, down, movewindow, d"
-
-        # Switch workspaces with mod + [0-9]
-        "$mod, 1, workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace, 3"
-        "$mod, 4, workspace, 4"
-        "$mod, 5, workspace, 5"
-        "$mod, 6, workspace, 6"
-        "$mod, 7, workspace, 7"
-        "$mod, 8, workspace, 8"
-        "$mod, 9, workspace, 9"
-        "$mod, 0, workspace, 10"
-
-        # Move active window to a workspace with mod + SHIFT + [0-9]
-        "$mod SHIFT, 1, movetoworkspace, 1"
-        "$mod SHIFT, 2, movetoworkspace, 2"
-        "$mod SHIFT, 3, movetoworkspace, 3"
-        "$mod SHIFT, 4, movetoworkspace, 4"
-        "$mod SHIFT, 5, movetoworkspace, 5"
-        "$mod SHIFT, 6, movetoworkspace, 6"
-        "$mod SHIFT, 7, movetoworkspace, 7"
-        "$mod SHIFT, 8, movetoworkspace, 8"
-        "$mod SHIFT, 9, movetoworkspace, 9"
-        "$mod SHIFT, 0, movetoworkspace, 10"
-
-        # Screenshot bindings
-        ", PRINT, exec, hyprshot --clipboard-only -m region"
-        "SHIFT, PRINT, exec, hyprshot --clipboard-only -m window"
-
-        # Wallpaper control
-        "$mod, slash, exec, $HOME/.local/bin/awwwutil next"
-      ];
-
-      # Mouse bindings
-      bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-      ];
-
-      # General settings
-      general = {
-        gaps_in = 1;
-        gaps_out = 3;
-        border_size = 3;
-        layout = "master";
-      };
-
-      # Decoration settings
-      decoration = {
-        rounding = 10;
-        blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
-        };
-        shadow = {
-          enabled = true;
-          range = 4;
-          render_power = 3;
-        };
-      };
-
-      # Animation settings
-      animations = {
-        enabled = true;
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        animation = [
-          "windows, 1, 3.5, myBezier"
-          "windowsOut, 1, 3.5, default, popin 80%"
-          "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 3.5, default"
-          "workspaces, 1, 1.5, default, fade"
-        ];
-      };
-
-      # Input settings
-      input = {
-        kb_layout = "us";
-        follow_mouse = 1;
-        touchpad = {
-          natural_scroll = false;
-        };
-        sensitivity = 0; # -1.0 - 1.0, 0 means no modification
-        # accel_profile = "flat"; # flat acceleration curve.
-        force_no_accel = true; # force disable acceleration
-      };
-
-      # Window rules
-      windowrule = [
-        "match:class (.*), opacity 0.98 0.95"
-        "match:class (chromium-browser|mpv), opacity 1.0 1.0"
-      ];
-
-      # Master layout configuration (see: https://wiki.hypr.land/Configuring/Master-Layout/)
-      # - Master window always centered (orientation = "center")
-      # - New windows become slaves to preserve master centrality
-      # - pain point: closing left slave with a right slave causes it toake the position of the left.
-      master = {
-        new_status = "slave"; # New windows become slaves
-        new_on_top = false; # New slaves added to bottom
-        mfact = 0.55; # Master takes 55% of screen
-        orientation = "center"; # place the master in the center
-        slave_count_for_center_master = 0; # Center master all the time
-      };
-
-      # Cursor settings
-      #cursor = {
-      #  no_hardware_cursors = true;
-      #};
-
-      # Environment variables for cursor
-      env = [
-        "XCURSOR_THEME,Bibata-Modern-Amber"
-        "XCURSOR_SIZE,24"
-      ];
-
-      # Misc settings
-      misc = {
-      };
-
-      # Monitor configuration (adjust to your setup)
-      # bitdepth,10 = 10-bit color depth (1024 shades per RGB channel)
-      # cm,hdr = HDR color management with wide gamut and PQ transfer function
-      # sdrbrightness,1.45 = SDR content brightness in HDR mode (1.0-2.0 range)
-      # sdrsaturation,1.2 = SDR content saturation boost in HDR mode
-      # 2080ti power draw: 120hz = ~21w, 240hz = ~65w power draw
-      monitor = ",5120x1440@120,auto,1";
-    };
+    # The module only sets up package.path when extraLuaFiles is used, so do it
+    # here before loading the symlinked config (./lua/init.lua).
+    extraConfig = ''
+      local hypr_dir = (os.getenv("XDG_CONFIG_HOME") or (os.getenv("HOME") .. "/.config")) .. "/hypr"
+      package.path = hypr_dir .. "/?.lua;" .. hypr_dir .. "/?/init.lua;" .. package.path
+      require("main")
+    '';
   };
 }
