@@ -74,6 +74,25 @@ end
 -- Toggle between the two most recent workspaces (needs binds.allow_workspace_cycles)
 hl.bind(mod .. " + Tab", hl.dsp.focus({ workspace = "previous" }), { desc = "Previous workspace" })
 
+-- Scratchpad: drop-in special workspace
+hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special("scratch"), { desc = "Toggle scratchpad" })
+hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:scratch" }), { desc = "Move window to scratchpad" })
+
+-- Resize mode: SUPER+R, then hjkl/arrows (hold to repeat), Escape to exit
+hl.bind(mod .. " + R", hl.dsp.submap("resize"), { desc = "Resize mode" })
+hl.define_submap("resize", function()
+  local step = { l = { 40, 0 }, h = { -40, 0 }, k = { 0, -40 }, j = { 0, 40 } }
+  local arrows = { right = "l", left = "h", up = "k", down = "j" }
+  for key, s in pairs(step) do
+    hl.bind(key, hl.dsp.window.resize({ x = s[1], y = s[2], relative = true }), { repeating = true })
+  end
+  for arrow, key in pairs(arrows) do
+    hl.bind(arrow, hl.dsp.window.resize({ x = step[key][1], y = step[key][2], relative = true }), { repeating = true })
+  end
+  hl.bind("escape", hl.dsp.submap("reset"))
+  hl.bind("Return", hl.dsp.submap("reset"))
+end)
+
 -- Screenshot binds
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot --clipboard-only -m region"), { desc = "Screenshot region" })
 hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot --clipboard-only -m window"), { desc = "Screenshot window" })

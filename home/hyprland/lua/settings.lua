@@ -6,16 +6,27 @@
 ---- MONITOR ----
 -----------------
 
--- bitdepth = 10 = 10-bit color depth (1024 shades per RGB channel)
--- cm = "hdr" = HDR color management with wide gamut and PQ transfer function
--- sdrbrightness = 1.45 = SDR content brightness in HDR mode (1.0-2.0 range)
--- sdrsaturation = 1.2 = SDR content saturation boost in HDR mode
 -- 2080ti power draw: 120hz = ~21w, 240hz = ~65w power draw
+--
+-- HDR: the panel's EDID reports SDR reference white as 80 nits, so without an
+-- override the whole SDR desktop is tone-mapped to ~80 nits and looks dull.
+-- 600 = EDID sustained max (1015 peak w/ local dimming); sdrsaturation
+-- restores the vivid-gamut punch. gamma22 decodes SDR with pure 2.2 gamma
+-- like the panel's native SDR mode, not piecewise sRGB — deeper shadows,
+-- less "flat grey" look. Panel EDID reports 0.05 nits min black; the 0.2
+-- default would raise the black floor 4x.
 hl.monitor({
   output   = "",
   mode     = "5120x1440@120",
   position = "auto",
   scale    = 1,
+  bitdepth = 10, -- 10-bit color depth (1024 shades per RGB channel)
+  vrr      = 1,
+  cm       = "hdr",
+  sdr_max_luminance = 600,
+  sdr_eotf = "gamma22",
+  sdr_min_luminance = 0.05,
+  sdrsaturation = 1.4,
 })
 
 ------------------------------
@@ -39,6 +50,8 @@ hl.config({
 
   decoration = {
     rounding = 10,
+    fullscreen_opacity = 1.0, -- never dim fullscreen content (video etc.)
+    dim_special = 0.4, -- darken the background noticeably while the scratchpad is open
     blur = {
       enabled = true,
       size    = 3,
@@ -55,6 +68,10 @@ hl.config({
 
   binds = {
     allow_workspace_cycles = true, -- SUPER+Tab toggles between the two most recent workspaces
+  },
+
+  misc = {
+    disable_hyprland_logo = true, -- awwwutil owns the wallpaper
   },
 
   input = {
@@ -108,4 +125,11 @@ hl.window_rule({
   name  = "opaque-media",
   match = { class = "(chromium-browser|mpv)" },
   opacity = "1.0 1.0",
+})
+
+-- Amber border marks scratchpad windows so the overlay is obvious
+hl.window_rule({
+  name  = "scratchpad-border",
+  match = { workspace = "special:scratch" },
+  border_color = "rgb(fabd2f)",
 })
