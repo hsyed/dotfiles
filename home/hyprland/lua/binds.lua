@@ -1,4 +1,6 @@
 -- Keybindings and mouse binds.
+-- Every bind carries a desc; SUPER+F1 shows a searchable cheatsheet built
+-- from `hyprctl binds -j`.
 
 local mod      = "SUPER"
 local terminal = "ghostty"
@@ -8,28 +10,32 @@ local function webapp(url)
   return hl.dsp.exec_cmd(browser .. ' --app="' .. url .. '"')
 end
 
-hl.bind(mod .. " + Q", hl.dsp.window.close())
-hl.bind(mod .. " + SHIFT + Escape", hl.dsp.exit()) -- kill hyprland
-hl.bind(mod .. " + SHIFT + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mod .. " + Q", hl.dsp.window.close(), { desc = "Close window" })
+hl.bind(mod .. " + SHIFT + Escape", hl.dsp.exec_cmd("uwsm stop"), { desc = "End Hyprland session" })
+hl.bind(mod .. " + SHIFT + V", hl.dsp.window.float({ action = "toggle" }), { desc = "Toggle floating" })
 
-hl.bind(mod .. " + M", hl.dsp.exec_cmd("spotify")) -- Spotify
-hl.bind(mod .. " + B", hl.dsp.exec_cmd(browser)) -- Browser
-hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("hyprlock")) -- Lock screen without grace period for credentials
+hl.bind(mod .. " + M", hl.dsp.exec_cmd("spotify"), { desc = "Spotify" })
+hl.bind(mod .. " + B", hl.dsp.exec_cmd(browser), { desc = "Browser" })
+hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("hyprlock"), { desc = "Lock screen" }) -- no grace period for credentials
 
 -- terminal
-hl.bind(mod .. " + Return", hl.dsp.exec_cmd(terminal)) -- Terminal
-hl.bind(mod .. " + D", hl.dsp.exec_cmd(terminal .. " --confirm-close-surface=false -e btop")) -- System monitor
-hl.bind(mod .. " + E", hl.dsp.exec_cmd(terminal .. " --confirm-close-surface=false -e yazi", { float = true })) -- File manager
+hl.bind(mod .. " + Return", hl.dsp.exec_cmd(terminal), { desc = "Terminal" })
+hl.bind(mod .. " + D", hl.dsp.exec_cmd(terminal .. " --confirm-close-surface=false -e btop"), { desc = "System monitor (btop)" })
+hl.bind(mod .. " + E", hl.dsp.exec_cmd(terminal .. " --confirm-close-surface=false -e yazi", { float = true }), { desc = "File manager (yazi)" })
 
 -- rofi
-hl.bind(mod .. " + Space", hl.dsp.exec_cmd('rofi -show combi -combi-modes "window,drun,ssh" -modes combi')) -- App launcher
-hl.bind(mod .. " + CTRL + C", hl.dsp.exec_cmd("rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons")) -- Clipboard history
-hl.bind(mod .. " + CTRL + Space", hl.dsp.exec_cmd("rofimoji --action type clipboard --typer ydotool --clipboarder wl-copy")) -- Emoji picker with ydotool for XWayland support
+hl.bind(mod .. " + Space", hl.dsp.exec_cmd('rofi -show combi -combi-modes "window,drun,ssh" -modes combi'), { desc = "App launcher" })
+hl.bind(mod .. " + CTRL + C", hl.dsp.exec_cmd("rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons"), { desc = "Clipboard history" })
+hl.bind(mod .. " + CTRL + Space", hl.dsp.exec_cmd("rofimoji --action type clipboard --typer ydotool --clipboarder wl-copy"), { desc = "Emoji picker" }) -- ydotool for XWayland support
+
+-- keybind cheatsheet: mods+key + description of every bind that has one
+local cheatsheet = [[hyprctl binds -j | jq -r '.[] | select(.description != "") | ([(if .modmask >= 64 then "SUPER" else empty end), (if (.modmask/8|floor)%2 == 1 then "ALT" else empty end), (if (.modmask/4|floor)%2 == 1 then "CTRL" else empty end), (if .modmask%2 == 1 then "SHIFT" else empty end), .key] | join("+")) + "\t" + .description' | sort | column -ts "$(printf '\t')" | rofi -dmenu -i -p keys]]
+hl.bind(mod .. " + F1", hl.dsp.exec_cmd(cheatsheet), { desc = "Keybind cheatsheet" })
 
 -- web apps
-hl.bind(mod .. " + SHIFT + A", webapp("https://claude.ai/new"))
-hl.bind(mod .. " + SHIFT + X", webapp("https://x.com"))
-hl.bind(mod .. " + SHIFT + Y", webapp("https://youtube.com"))
+hl.bind(mod .. " + SHIFT + A", webapp("https://claude.ai/new"), { desc = "Claude" })
+hl.bind(mod .. " + SHIFT + X", webapp("https://x.com"), { desc = "X" })
+hl.bind(mod .. " + SHIFT + Y", webapp("https://youtube.com"), { desc = "YouTube" })
 
 -- Master layout orientation — Q/W/E map spatially to left/center/right, S swaps master.
 --
@@ -41,10 +47,10 @@ hl.bind(mod .. " + SHIFT + Y", webapp("https://youtube.com"))
 --   orientationright  (E): master on right,   slaves fill left   → e.g. 1:1, 1:2, 2:1
 --   swapwithmaster    (S): focused window becomes master, old master demoted to slave
 --                         — use this to canonically pick which window is master
-hl.bind(mod .. " + SHIFT + Q", hl.dsp.layout("orientationleft"))
-hl.bind(mod .. " + SHIFT + W", hl.dsp.layout("orientationcenter"))
-hl.bind(mod .. " + SHIFT + E", hl.dsp.layout("orientationright"))
-hl.bind(mod .. " + SHIFT + S", hl.dsp.layout("swapwithmaster"))
+hl.bind(mod .. " + SHIFT + Q", hl.dsp.layout("orientationleft"), { desc = "Master on left" })
+hl.bind(mod .. " + SHIFT + W", hl.dsp.layout("orientationcenter"), { desc = "Master in center" })
+hl.bind(mod .. " + SHIFT + E", hl.dsp.layout("orientationright"), { desc = "Master on right" })
+hl.bind(mod .. " + SHIFT + S", hl.dsp.layout("swapwithmaster"), { desc = "Swap with master" })
 
 -- Move focus with mod + vim keys / arrow keys
 -- Move windows with mod + SHIFT + vim keys / arrow keys
@@ -53,25 +59,28 @@ local directions = {
   left = "left", right = "right", up = "up", down = "down",
 }
 for key, direction in pairs(directions) do
-  hl.bind(mod .. " + " .. key, hl.dsp.focus({ direction = direction }))
-  hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ direction = direction }))
+  hl.bind(mod .. " + " .. key, hl.dsp.focus({ direction = direction }), { desc = "Focus " .. direction })
+  hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ direction = direction }), { desc = "Move window " .. direction })
 end
 
 -- Switch workspaces with mod + [0-9]
 -- Move active window to a workspace with mod + SHIFT + [0-9]
 for i = 1, 10 do
   local key = i % 10 -- 10 maps to key 0
-  hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-  hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+  hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }), { desc = "Workspace " .. i })
+  hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }), { desc = "Move window to workspace " .. i })
 end
 
+-- Toggle between the two most recent workspaces (needs binds.allow_workspace_cycles)
+hl.bind(mod .. " + Tab", hl.dsp.focus({ workspace = "previous" }), { desc = "Previous workspace" })
+
 -- Screenshot binds
-hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot --clipboard-only -m region"))
-hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot --clipboard-only -m window"))
+hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot --clipboard-only -m region"), { desc = "Screenshot region" })
+hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot --clipboard-only -m window"), { desc = "Screenshot window" })
 
 -- Wallpaper control
-hl.bind(mod .. " + slash", hl.dsp.exec_cmd("$HOME/.local/bin/awwwutil next"))
+hl.bind(mod .. " + slash", hl.dsp.exec_cmd("$HOME/.local/bin/awwwutil next"), { desc = "Next wallpaper" })
 
 -- Move/resize windows with mod + LMB/RMB and dragging
-hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true, desc = "Drag window" })
+hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true, desc = "Resize window" })

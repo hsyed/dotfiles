@@ -53,6 +53,10 @@ hl.config({
 
   animations = { enabled = true },
 
+  binds = {
+    allow_workspace_cycles = true, -- SUPER+Tab toggles between the two most recent workspaces
+  },
+
   input = {
     kb_layout    = "us",
     follow_mouse = 1,
