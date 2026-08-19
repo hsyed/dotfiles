@@ -33,7 +33,7 @@
   boot = {
     loader = {
       systemd-boot.enable = true; # DO NOT CHANGE!
-      systemd-boot.configurationLimit = 10;
+      systemd-boot.configurationLimit = 6;
       efi.canTouchEfiVariables = true;
     };
     consoleLogLevel = 3;
