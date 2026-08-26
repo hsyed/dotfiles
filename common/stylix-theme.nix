@@ -1,7 +1,7 @@
 # common stylix theme configuration, only add theme elements to this file and leave
 # toggling targets to nixos/hm.
 # https://nix-community.github.io/stylix/
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   stylix = {
 
@@ -31,8 +31,12 @@
       };
     };
 
-    # Cursor theme
-    cursor = {
+    # Cursor theme. Linux only: stylix wires this into `home.pointerCursor`,
+    # which home-manager asserts is Linux-only, but its gtk/x11/sway targets
+    # still flip `home.pointerCursor.<backend>.enable` on any platform whenever
+    # `stylix.cursor` is non-null. On Darwin that leaves `home.pointerCursor`
+    # enabled with no `name`/`package`, breaking evaluation.
+    cursor = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Amber";
       size = 24;
