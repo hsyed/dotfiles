@@ -14,6 +14,7 @@
     ./herdr.nix
     ./npm.nix
     ./nvim_lazyvim.nix
+    ./tuicr.nix
   ];
 
   home.sessionVariables = {
@@ -63,7 +64,6 @@
     pkgs.stern
     pkgs.yq-go
     pkgs.keymapp # ZSA keyboard flashing/live-training
-    pkgs.tuicr # PR-style terminal review UI for AI-generated diffs
   ];
 
   programs = {
