@@ -105,15 +105,20 @@
       extraSetFlags = [ "--exit-node-allow-lan-access=true" ];
     };
 
-    # use keyd to make the windows layout behave more like a mac.
+    # Caps lock behaves as hyper on the keychron keyboard. The moonlander's
+    # firmware already implements hyper itself, and meta editing shortcuts are
+    # handled by hyprland binds (see home/hyprland/lua/binds.lua).
     keyd = {
       enable = true;
       keyboards = {
-        default = {
-          ids = [ "*" ];
+        keychron = {
+          ids = [ "k:05ac:024f" ];
 
           settings = {
-            main = { };
+            main = {
+              capslock = "overload(hyper, capslock)";
+            };
+            "hyper:C-M-A-S" = { };
           };
         };
       };
