@@ -18,6 +18,18 @@ hl.bind(hyper .. " + F", hl.dsp.window.float({ action = "toggle" }), { desc = "T
 -- Mac-style editing: meta+<key> delivers ctrl+<key> to the focused window.
 -- keyd cannot do this on the moonlander (its firmware hyper chord includes
 -- meta), so hyprland forwards the shortcut itself.
+--
+-- Terminals are the exception: there ctrl+c/x/v are control codes (SIGINT,
+-- SIGQUIT-adjacent, quoted-insert), and the clipboard lives on the shifted
+-- chord. A function dispatcher runs per keypress, so the substitution is
+-- decided from the focused window instead of being configured per app. Cut
+-- degrades to copy — a terminal has no cut.
+local terminal_classes = {
+	["com.mitchellh.ghostty"] = true,
+}
+
+local terminal_clipboard = { c = "c", x = "c", v = "v" }
+
 for key, desc in pairs({
 	c = "Copy",
 	v = "Paste",
@@ -29,7 +41,14 @@ for key, desc in pairs({
 	n = "New",
 	t = "New tab",
 }) do
-	hl.bind(mod .. " + " .. key, hl.dsp.send_shortcut({ mods = "CTRL", key = key }), { desc = desc })
+	hl.bind(mod .. " + " .. key, function()
+		local window = hl.get_active_window()
+		if window and terminal_classes[window.class] and terminal_clipboard[key] then
+			hl.dispatch(hl.dsp.send_shortcut({ mods = "CTRL SHIFT", key = terminal_clipboard[key] }))
+		else
+			hl.dispatch(hl.dsp.send_shortcut({ mods = "CTRL", key = key }))
+		end
+	end, { desc = desc })
 end
 
 hl.bind(hyper .. " + M", hl.dsp.exec_cmd("spotify"), { desc = "Spotify" })
