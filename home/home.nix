@@ -60,6 +60,12 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # `man home-configuration.nix` is generated through nixpkgs' nixosOptionsDoc,
+  # which builds an options.json that references the nixpkgs source without
+  # store context — an upstream bug that warns on every evaluation. The same
+  # reference lives at https://nix-community.github.io/home-manager/options.xhtml
+  manual.manpages.enable = false;
+
   programs.zsh = {
     enable = true;
   };
