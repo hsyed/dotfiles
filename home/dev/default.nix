@@ -136,7 +136,7 @@
         "nx.fmt" = "env -C ~/.dotfiles nix fmt";
         "nx.verify" = "nix flake check --all-systems ~/.dotfiles";
         "nx.sys.switch" =
-          if pkgs.stdenv.isDarwin then
+          if pkgs.stdenv.hostPlatform.isDarwin then
             "nh darwin switch --ask ~/.dotfiles"
           else
             "nh os switch --ask ~/.dotfiles";

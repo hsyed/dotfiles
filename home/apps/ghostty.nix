@@ -4,7 +4,7 @@
   programs.ghostty = {
     enable = true;
     # this package comes from a cask on Darwin
-    package = if pkgs.stdenv.isDarwin then null else pkgs.ghostty;
+    package = if pkgs.stdenv.hostPlatform.isDarwin then null else pkgs.ghostty;
 
     # Ghostty's zsh shell integration injects OSC 133 prompt markers. Those can
     # interact badly with prompt-modifying shells like `kubie ctx`, making the
