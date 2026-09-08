@@ -24,11 +24,15 @@ hl.bind(hyper .. " + F", hl.dsp.window.float({ action = "toggle" }), { desc = "T
 -- chord. A function dispatcher runs per keypress, so the substitution is
 -- decided from the focused window instead of being configured per app. Cut
 -- degrades to copy — a terminal has no cut.
+--
+-- Paste is the exception to the exception: it stays on plain ctrl+v so the byte
+-- reaches the TUI. Claude Code needs it to pull an image off the clipboard
+-- with wl-paste; ghostty text paste stays on ctrl+shift+v.
 local terminal_classes = {
 	["com.mitchellh.ghostty"] = true,
 }
 
-local terminal_clipboard = { c = "c", x = "c", v = "v" }
+local terminal_clipboard = { c = "c", x = "c" }
 
 for key, desc in pairs({
 	c = "Copy",
