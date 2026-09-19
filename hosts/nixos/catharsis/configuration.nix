@@ -193,6 +193,7 @@
       "ydotool" # Allow user to use ydotool for programmatic input
       "docker"
       "plugdev" # ZSA keyboard flashing
+      "input" # voxtype reads key press/release from evdev directly
     ];
     packages = [ ];
   };

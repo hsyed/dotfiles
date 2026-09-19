@@ -14,6 +14,7 @@
     ./yazi.nix
     ./chromium.nix
     ./logseq.nix
+    ./voxtype.nix
   ];
 
   home.packages = with pkgs; [
@@ -38,10 +39,6 @@
     sox # audio tool required for claude-code voice input
     protonup-ng # manage proton runtime updates (gaming related)
     dua # disk usage analyzer
-
-    (pkgs.jetbrains.rust-rover.override {
-      #jdk = pkgs.jdk; # uncomment this if there is an issue building with the jebtrains jdk
-    })
 
   ];
 

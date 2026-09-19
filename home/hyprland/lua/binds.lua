@@ -169,3 +169,14 @@ hl.bind(mod .. " + slash", hl.dsp.exec_cmd("$HOME/.local/bin/awwwutil next"), { 
 -- Move/resize windows with mod + LMB/RMB and dragging
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true, desc = "Drag window" })
 hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true, desc = "Resize window" })
+
+-- Dictation: hold SUPER+D, speak, release. voxtype grabs this from evdev
+-- itself (see ../voxtype.nix), because hyprland does not deliver the D release
+-- once SUPER is already up, which is the order the moonlander sends.
+--
+-- This bind does nothing on purpose. evdev reads below the compositor and does
+-- not consume the key, so without it the held D also reaches the focused window
+-- and types dddddd while you dictate. A consuming bind swallows it here while
+-- voxtype still sees the raw key underneath. No `repeating`, so holding it down
+-- fires once.
+hl.bind(mod .. " + D", function() end, { desc = "Dictate (hold)" })
