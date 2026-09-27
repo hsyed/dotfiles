@@ -34,6 +34,9 @@ local terminal_classes = {
 
 local terminal_clipboard = { c = "c", x = "c" }
 
+-- ctrl+z is SIGTSTP in a terminal, not undo — swallow it instead.
+local terminal_blocked = { z = true }
+
 for key, desc in pairs({
 	c = "Copy",
 	v = "Paste",
@@ -47,7 +50,10 @@ for key, desc in pairs({
 }) do
 	hl.bind(mod .. " + " .. key, function()
 		local window = hl.get_active_window()
-		if window and terminal_classes[window.class] and terminal_clipboard[key] then
+		local in_terminal = window and terminal_classes[window.class]
+		if in_terminal and terminal_blocked[key] then
+			return
+		elseif in_terminal and terminal_clipboard[key] then
 			hl.dispatch(hl.dsp.send_shortcut({ mods = "CTRL SHIFT", key = terminal_clipboard[key] }))
 		else
 			hl.dispatch(hl.dsp.send_shortcut({ mods = "CTRL", key = key }))
