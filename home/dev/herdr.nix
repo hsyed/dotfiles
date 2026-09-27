@@ -36,6 +36,10 @@ in
   programs.herdr = {
     enable = true;
 
+    # Config is a read-only store symlink; without this herdr re-shows
+    # onboarding and fails writing `onboarding = false` back to it.
+    settings.onboarding = false;
+
     settings.ui = {
       agent_panel_sort = "spaces";
       sidebar_width = 40;
