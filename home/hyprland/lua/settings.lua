@@ -35,6 +35,9 @@ hl.monitor({
 
 hl.env("XCURSOR_THEME", "Bibata-Modern-Amber")
 hl.env("XCURSOR_SIZE", "24")
+-- nixpkgs Electron/CEF wrappers (Spotify, Obsidian, Logseq) go native Wayland.
+-- Under XWayland, Spotify ignored keyboard focus until the pointer entered it.
+hl.env("NIXOS_OZONE_WL", "1")
 
 -----------------------
 ---- LOOK AND FEEL ----
@@ -104,12 +107,12 @@ hl.config({
 
 hl.curve("myBezier", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.05 } } })
 
-hl.animation({ leaf = "windows", enabled = true, speed = 3.5, bezier = "myBezier" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 3.5, bezier = "default", style = "popin 80%" })
-hl.animation({ leaf = "border", enabled = true, speed = 10, bezier = "default" })
-hl.animation({ leaf = "borderangle", enabled = true, speed = 8, bezier = "default" })
-hl.animation({ leaf = "fade", enabled = true, speed = 3.5, bezier = "default" })
-hl.animation({ leaf = "workspaces", enabled = true, speed = 1.5, bezier = "default", style = "fade" })
+hl.animation({ leaf = "windows", enabled = true, speed = 1.75, bezier = "myBezier" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 1.75, bezier = "default", style = "popin 80%" })
+hl.animation({ leaf = "border", enabled = true, speed = 5, bezier = "default" })
+hl.animation({ leaf = "borderangle", enabled = true, speed = 4, bezier = "default" })
+hl.animation({ leaf = "fade", enabled = true, speed = 1.75, bezier = "default" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 0.75, bezier = "default", style = "fade" })
 
 ----------------------
 ---- WINDOW RULES ----

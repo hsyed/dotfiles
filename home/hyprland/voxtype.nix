@@ -26,14 +26,16 @@ let
     inherit (voxtypeBase) meta;
   };
 
-  # q5_0 is 547M against 1.6G for f16. That 1.1G is what makes room for the
-  # cleanup model on a 12G card.
+  # Full large-v3, not turbo: 32 decoder layers against 4, slower but more
+  # accurate. q5_0 is ~1.1G against 3.1G for f16, leaving VRAM for games.
   whisperModel = pkgs.fetchurl {
-    url = "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-large-v3-turbo-q5_0.bin";
-    hash = "sha256-OUIhcJzVrR9AxG5gMcphvOiJMebgiMGIKUxtWlX/p+I=";
+    url = "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-large-v3-q5_0.bin";
+    hash = "sha256-11eV7P8/g7X6qJ0ZAGBK2MeAq9Vzn65AbeGfI+zZitE=";
   };
 
-  cleanupEnabled = true;
+  # Off to match SuperWhisper on the Mac (plain whisper medium): turbo already
+  # punctuates and drops fillers. On costs 7G of VRAM for self-correction removal.
+  cleanupEnabled = false;
 
   # Smaller models rewrite inconsistently; ones that emit literal <think> tags
   # (lfm2.5, qwen3) cannot be silenced and type their monologue at the cursor.
@@ -147,14 +149,14 @@ in
 
   xdg.dataFile."voxtype/quickshell".source = "${voxtypeBase.src}/quickshell";
 
-  services.ollama = {
+  services.ollama = lib.mkIf cleanupEnabled {
     enable = true;
     package = pkgs.ollama-vulkan;
   };
 
   # home-manager's services.ollama has no loadModels. Bound to the server
   # rather than home.activation, which runs before it is listening.
-  systemd.user.services.ollama-model-loader = {
+  systemd.user.services.ollama-model-loader = lib.mkIf cleanupEnabled {
     Unit = {
       Description = "Pull the dictation cleanup model";
       After = [ "ollama.service" ];
@@ -212,6 +214,10 @@ in
             output = {
               mode = "type";
               fallback_to_clipboard = true;
+              # Stopping is SUPER+D, and voxtype won't type while SUPER is held.
+              # The 750ms default expired whenever SUPER outlasted a fast
+              # transcription, leaving the text only on the clipboard.
+              modifier_release_timeout_ms = 3000;
               notification = {
                 on_recording_start = false;
                 on_recording_stop = false;

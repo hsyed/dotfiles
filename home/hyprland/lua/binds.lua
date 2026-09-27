@@ -30,6 +30,7 @@ hl.bind(hyper .. " + F", hl.dsp.window.float({ action = "toggle" }), { desc = "T
 -- with wl-paste; ghostty text paste stays on ctrl+shift+v.
 local terminal_classes = {
 	["com.mitchellh.ghostty"] = true,
+	["com.mitchellh.ghostty.btop"] = true,
 }
 
 local terminal_clipboard = { c = "c", x = "c" }
@@ -61,7 +62,38 @@ for key, desc in pairs({
 	end, { desc = desc })
 end
 
-hl.bind(hyper .. " + M", hl.dsp.exec_cmd("spotify"), { desc = "Spotify" })
+-- Launch-or-close toggle shown as a centered floating modal. For tray apps,
+-- closing the window minimizes to the tray and re-running the command raises
+-- the running instance. class is an exact match. The float is a window rule
+-- rather than a dispatch so it applies before the first frame; floating after
+-- mapping would tile the window first and re-lay out the workspace.
+local function toggle_app(class, cmd)
+	hl.window_rule({
+		name = class .. "-toggle-modal",
+		match = { class = class },
+		float = true,
+		center = true,
+	})
+	return function()
+		local window = hl.get_windows({ class = class })[1]
+		if window then
+			hl.dispatch(hl.dsp.window.close({ window = window }))
+		else
+			hl.dispatch(hl.dsp.exec_cmd(cmd))
+		end
+	end
+end
+
+-- Raise over MPRIS rather than re-running spotify: a second process races the
+-- running one, its window flickers focus and sometimes closes itself.
+hl.bind(
+	hyper .. " + M",
+	toggle_app(
+		"spotify",
+		"busctl --user call org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2 Raise || spotify"
+	),
+	{ desc = "Toggle Spotify" }
+)
 hl.bind(hyper .. " + B", hl.dsp.exec_cmd(browser), { desc = "Browser" })
 hl.bind(hyper .. " + L", hl.dsp.exec_cmd("logseq"), { desc = "Logseq" })
 hl.bind(hyper .. " + O", hl.dsp.exec_cmd("obsidian"), { desc = "Obsidian" })
@@ -71,7 +103,15 @@ hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("loginctl lock-session"), { desc = "
 hl.bind(mod .. " + Return", hl.dsp.exec_cmd(terminal), { desc = "Terminal" })
 hl.bind(
 	hyper .. " + D",
-	hl.dsp.exec_cmd(terminal .. " --confirm-close-surface=false -e btop"),
+	-- own class so the toggle and modal rule don't catch the main terminal
+	toggle_app(
+		"com.mitchellh.ghostty.btop",
+		-- window size is in cells: ~10x21px each, so ~2560x1080 (half by three
+		-- quarters of the 5120x1440 ultrawide), set before the first frame
+		terminal
+			.. " --class=com.mitchellh.ghostty.btop --window-width=258 --window-height=50"
+			.. " --confirm-close-surface=false -e btop"
+	),
 	{ desc = "System monitor (btop)" }
 )
 hl.bind(
