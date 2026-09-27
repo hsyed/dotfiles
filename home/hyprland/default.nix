@@ -31,6 +31,7 @@
 
     # Desktop applications
     spotify
+    obsidian # markdown notes; vaults are plain folders (e.g. project docs/)
     discord
     signal-desktop
     zoom-us

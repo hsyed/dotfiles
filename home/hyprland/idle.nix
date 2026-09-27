@@ -13,7 +13,7 @@
       listener = [
         {
           timeout = 300; # 5 minutes
-          on-timeout = "hyprlock";
+          on-timeout = "pidof hyprlock || hyprlock --grace 10"; # grace only for idle locks
         }
         {
           timeout = 600; # 10 minutes

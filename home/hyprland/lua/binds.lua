@@ -64,7 +64,8 @@ end
 hl.bind(hyper .. " + M", hl.dsp.exec_cmd("spotify"), { desc = "Spotify" })
 hl.bind(hyper .. " + B", hl.dsp.exec_cmd(browser), { desc = "Browser" })
 hl.bind(hyper .. " + L", hl.dsp.exec_cmd("logseq"), { desc = "Logseq" })
-hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("hyprlock"), { desc = "Lock screen" }) -- no grace period for credentials
+hl.bind(hyper .. " + O", hl.dsp.exec_cmd("obsidian"), { desc = "Obsidian" })
+hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("loginctl lock-session"), { desc = "Lock screen" })
 
 -- terminal
 hl.bind(mod .. " + Return", hl.dsp.exec_cmd(terminal), { desc = "Terminal" })
