@@ -34,6 +34,7 @@
     loader = {
       systemd-boot.enable = true; # DO NOT CHANGE!
       systemd-boot.configurationLimit = 6;
+      systemd-boot.edk2-uefi-shell.enable = true; # used to find the Windows ESP handle (map -c)
       efi.canTouchEfiVariables = true;
     };
     consoleLogLevel = 3;
@@ -229,6 +230,7 @@
     vim
     docker-compose
     usbutils # meeded for lsusb
+    lutris # battle.net / wow via install script
     libnotify # for notify-send command
     pkgs.mangohud # gaming stats overlay
     pkgs.unzip
@@ -281,7 +283,7 @@
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true; # wraps a session in a micro compositor for performance reasons
   programs.gamemode.enable = true; # temporarily tunes system for gaming
-  # lutris, bottle and heroic not included
+  # lutris in systemPackages; bottles and heroic not included
 
   stylix = {
     enable = true;
