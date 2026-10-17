@@ -12,9 +12,15 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    # Pinned to 3.22: 3.23 emits activity type 10113, which breaks nom 2.2.0 (see FIX-FORWARD.md).
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3.22.*";
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # Zed's Delta: not in nixpkgs yet, see FIX-FORWARD.md
+    delta = {
+      url = "github:zed-industries/delta-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

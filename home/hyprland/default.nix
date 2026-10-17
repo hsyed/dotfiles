@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -32,6 +32,7 @@
     # Desktop applications
     spotify
     obsidian # markdown notes; vaults are plain folders (e.g. project docs/)
+    inputs.delta.packages.${pkgs.stdenv.hostPlatform.system}.delta # Zed's agent workspace; flake input until in nixpkgs
     discord
     signal-desktop
     zoom-us

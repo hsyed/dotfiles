@@ -24,3 +24,33 @@ resolved and the workaround is no longer needed.
   `modules/services/window-managers/hyprland/default.nix` upstream. At that
   point, drop the `systemd.extraCommands` override in `hyprland.nix` and
   delete this entry.
+
+## Zed Delta: installed from Zed's flake instead of nixpkgs
+
+- **Where:** `flake.nix` — `inputs.delta`; `home/hyprland/default.nix` —
+  `inputs.delta.packages.<system>.delta` in `home.packages`.
+- **What:** Pulls Zed's Delta from the official
+  [zed-industries/delta-nix](https://github.com/zed-industries/delta-nix)
+  flake (prebuilt Linux binaries, built-in updater disabled).
+- **Why:** Delta is not packaged in nixpkgs yet. Note that nixpkgs `delta` is
+  the unrelated git diff pager.
+- **Revert when:** Zed's Delta lands in nixpkgs (search nixpkgs for a
+  `zed-delta`-style attribute). At that point, swap the package reference for
+  the nixpkgs one, drop the `delta` input from `flake.nix`, the `inputs`
+  argument in `home/hyprland/default.nix` if unused, and delete this entry.
+
+## Determinate Nix pinned to 3.22: nom can't parse 3.23 logs
+
+- **Where:** `flake.nix` — `inputs.determinate.url` (`3.22.*` instead of `*`).
+- **What:** Holds Determinate Nix at 3.22.x.
+- **Why:** Determinate Nix 3.23 emits `internal-json` activity type `10113`
+  (named activities), which nix-output-monitor 2.2.0 rejects with
+  `invalid activity type: 10113`, spamming every `nh` switch. Tracked in
+  [maralorn/nix-output-monitor#320](https://github.com/maralorn/nix-output-monitor/issues/320);
+  fix in [PR #321](https://github.com/maralorn/nix-output-monitor/pull/321)
+  (Determinate closed their side as
+  [nix-src#659](https://github.com/DeterminateSystems/nix-src/issues/659)).
+- **Revert when:** a nom release containing PR #321 reaches nixpkgs (check
+  `nix-output-monitor` version > 2.2.0 in the locked nixpkgs). At that point,
+  set the URL back to `determinate/*`, run `nix flake update determinate`, and
+  delete this entry.
