@@ -47,10 +47,14 @@ resolved and the workaround is no longer needed.
   (named activities), which nix-output-monitor 2.2.0 rejects with
   `invalid activity type: 10113`, spamming every `nh` switch. Tracked in
   [maralorn/nix-output-monitor#320](https://github.com/maralorn/nix-output-monitor/issues/320);
-  fix in [PR #321](https://github.com/maralorn/nix-output-monitor/pull/321)
-  (Determinate closed their side as
-  [nix-src#659](https://github.com/DeterminateSystems/nix-src/issues/659)).
-- **Revert when:** a nom release containing PR #321 reaches nixpkgs (check
-  `nix-output-monitor` version > 2.2.0 in the locked nixpkgs). At that point,
-  set the URL back to `determinate/*`, run `nix flake update determinate`, and
-  delete this entry.
+  fixed upstream by [PR #321](https://github.com/maralorn/nix-output-monitor/pull/321)
+  (merged 2026-10-19, unreleased) and patched into nixpkgs' 2.2.0 by
+  [NixOS/nixpkgs#576147](https://github.com/NixOS/nixpkgs/pull/576147)
+  (merged to `master` 2026-10-21, merge commit `b1b7e1f0`). Determinate closed
+  their side as
+  [nix-src#659](https://github.com/DeterminateSystems/nix-src/issues/659).
+- **Revert when:** the locked nixpkgs contains nixpkgs#576147. The version
+  stays 2.2.0, so check the commit instead:
+  `gh api repos/NixOS/nixpkgs/compare/b1b7e1f0fb61b4705f43257dfefedbc814734193...<locked nixpkgs rev> -q .status`
+  must print `ahead` or `identical`. At that point, set the URL back to
+  `determinate/*`, run `nix flake update determinate`, and delete this entry.
