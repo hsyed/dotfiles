@@ -6,6 +6,4 @@
     theme = "gruvbox-dark";
     plugins = [ ];
   };
-
-  stylix.targets.rofi.enable = false;
 }

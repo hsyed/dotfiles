@@ -16,6 +16,14 @@
     settings = {
       shell-integration = "none";
       theme = "Gruvbox Dark";
+
+      # Leave pane splitting to herdr.
+      keybind = [
+        "super+d=unbind"
+        "super+shift+d=unbind"
+        "super+enter=unbind"
+        "super+shift+enter=toggle_fullscreen"
+      ];
     };
   };
 

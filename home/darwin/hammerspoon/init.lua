@@ -7,7 +7,9 @@ local app_bindings = {
     { key = "m",      app = "Spotify" },
     { key = "s",      app = "Slack" },
     { key = "z",      app = "zed" },
-    { key = "c",      app = "Cursor" },
+    { key = "a",      app = "Cursor" },
+    { key = "c",      app = "Claude" },
+    { key = "o",      app = "Obsidian" },
 }
 
 for _, binding in ipairs(app_bindings) do

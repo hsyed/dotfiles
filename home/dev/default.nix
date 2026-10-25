@@ -12,6 +12,7 @@
 
   imports = [
     ./herdr.nix
+    ./k9s.nix
     ./npm.nix
     ./nvim_lazyvim.nix
     ./tuicr.nix
@@ -29,7 +30,6 @@
 
   home.packages = [
     pkgs.ripgrep # rg better than grep.
-    pkgs.k9s # Kubernetes CLI
     pkgs.nushell # A modern shell for building pipelines
     pkgs.rustup # Rust toolchain manager
     pkgs.go # Go programming language
@@ -63,6 +63,7 @@
     pkgs.ctlptl # local container cluster management tool
     pkgs.act # Run GitHub Actions locally
     pkgs.stern
+    pkgs.sops # encrypted secrets editor (infra *.secret.yaml)
     pkgs.yq-go
     pkgs.keymapp # ZSA keyboard flashing/live-training
   ];

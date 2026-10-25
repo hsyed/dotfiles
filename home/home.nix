@@ -72,5 +72,8 @@
 
   stylix = {
     enable = true;
+    # Stylix's rofi target still sets the renamed `programs.rofi.font`, which
+    # warns on every evaluation even where rofi isn't installed.
+    targets.rofi.enable = false;
   };
 }
