@@ -48,6 +48,8 @@ for key, desc in pairs({
 	f = "Find",
 	n = "New",
 	t = "New tab",
+	equal = "Zoom in",
+	minus = "Zoom out",
 }) do
 	hl.bind(mod .. " + " .. key, function()
 		local window = hl.get_active_window()
@@ -101,6 +103,7 @@ hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("loginctl lock-session"), { desc = "
 
 -- terminal
 hl.bind(mod .. " + Return", hl.dsp.exec_cmd(terminal), { desc = "Terminal" })
+hl.bind(hyper .. " + Return", hl.dsp.exec_cmd(terminal), { desc = "Terminal" })
 hl.bind(
 	hyper .. " + D",
 	-- own class so the toggle and modal rule don't catch the main terminal

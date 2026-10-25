@@ -39,14 +39,12 @@
     };
     consoleLogLevel = 3;
     initrd = {
-      systemd.enable = true;
       kernelModules = [
         "nvidia"
         "nvidia_modeset"
         "nvidia_uvm"
         "nvidia_drm"
       ]; # Early KMS for flicker-free boot with NVIDIA
-      verbose = false;
     };
     kernelParams = [
       "quiet"

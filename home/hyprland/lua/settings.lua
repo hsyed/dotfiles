@@ -79,6 +79,7 @@ hl.config({
 
 	input = {
 		kb_layout = "us",
+		numlock_by_default = true, -- numpad keys send digits, not KP_End/KP_Down etc.
 		follow_mouse = 1,
 		touchpad = {
 			natural_scroll = false,
