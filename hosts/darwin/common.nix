@@ -28,7 +28,6 @@
 
   homebrew = {
     enable = true;
-    onActivation.extraFlags = [ "--force-cleanup" ];
     casks = [
       "ghostty"
       "hammerspoon"
